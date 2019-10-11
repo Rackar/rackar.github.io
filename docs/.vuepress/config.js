@@ -3,19 +3,27 @@ module.exports = {
   description: 'Just playing around',
   //   base: '/codingyang/',
   themeConfig: {
-    sidebar: 'auto'
-  }, //自动侧边栏
+    nav: [
+      {text: '首页', link: '/'},
+      {text: '文章', link: '/article/'},
+      {text: '儿童编程', link: '/child/'},
+      {text: '其他程序', link: '/code/'},
+      {text: '连岳', link: 'http://www.lianyue4u.com'}
+    ],
+    sidebar: 'auto', //自动侧边栏
+    displayAllHeaders: true // 默认值：false
+  },
   locales: {
     // 键名是该语言所属的子路径
     // 作为特例，默认语言可以使用 '/' 作为其路径。
     '/': {
       lang: 'zh-CN', // 将会被设置为 <html> 的 lang 属性
-      title: 'VuePress',
+      title: 'CodingYang',
       description: 'Vue 驱动的静态网站生成器'
     },
     '/en/': {
       lang: 'en-US',
-      title: 'VuePress',
+      title: 'CodingYang',
       description: 'Vue-powered Static Site Generator'
     }
   },

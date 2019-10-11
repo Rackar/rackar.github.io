@@ -5,18 +5,17 @@ tagline: Hero 副标题
 actionText: 快速上手 →
 actionLink: /code/
 features:
-  - title: 简洁至上
-    details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-    url: /do/
-  - title: Vue 驱动
-    details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-    url: /do/
-  - title: 高性能
-    details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
-    footer: MIT Licensed | Copyright © 2018-present Evan You
-    url: /do/
+  - title: 文章
+    details: 博客文章列表，包括儿童编程、儿童教育及程序开发、个人感悟等主题。
+    url: /article/
+    imgname: /article.jpg
+  - title: 儿童教育程序
+    details: 自己在陪伴孩子成长过程中开发的一些程序软件。
+    url: /child/
+    imgname: /child.jpg
+  - title: 其他程序
+    details: 测绘工具、辅助工具等自编软件。
+    url: /code/
+    imgname: /code.jpg
+footer: Copyright © 2018-present CodingYang | 蒙ICP备19000275号-1
 ---
-
-# doc
-
-## dodd

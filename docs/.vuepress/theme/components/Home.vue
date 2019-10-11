@@ -15,7 +15,7 @@
     <div class="features" v-if="data.features && data.features.length">
       <div class="feature" v-for="(feature, index) in data.features" :key="index">
         <a :href="feature.url">
-          <h4>图片放这里</h4>
+          <img class="image_title" :src="'/pic'+feature.imgname" :alt="feature.title" />
           <h2>{{ feature.title }}</h2>
           <p>{{ feature.details }}</p>
         </a>
@@ -113,6 +113,11 @@ export default {
     flex-grow: 1;
     flex-basis: 30%;
     max-width: 30%;
+
+    .image_title {
+      width: 14rem;
+      height :10rem;
+    }
 
     h2 {
       font-size: 1.4rem;
