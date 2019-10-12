@@ -1,9 +1,8 @@
 ---
 home: true
-heroText: Hero 标题
-tagline: Hero 副标题
-actionText: 快速上手 →
-actionLink: /code/
+heroText: CodingYang博客
+tagline: 注册测绘师 / 业余码农 / 儿童成长陪伴员
+
 features:
   - title: 文章
     details: 博客文章列表，包括儿童编程、儿童教育及程序开发、个人感悟等主题。
