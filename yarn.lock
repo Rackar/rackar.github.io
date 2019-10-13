@@ -7077,6 +7077,16 @@ vuepress-html-webpack-plugin@^3.2.0:
     toposort "^1.0.0"
     util.promisify "1.0.0"
 
+vuepress-plugin-baidu-autopush@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-baidu-autopush/download/vuepress-plugin-baidu-autopush-1.0.1.tgz#e5042170f05a585c4a38f876e01ff4706cd82fbe"
+  integrity sha1-5QQhcPBaWFxKOPh24B/0cGzYL74=
+
+vuepress-plugin-baidu-tongji@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-baidu-tongji/download/vuepress-plugin-baidu-tongji-1.0.1.tgz#2cdc502aad5f08b8134cdb1621adb32f4e398438"
+  integrity sha1-LNxQKq1fCLgTTNsWIa2zL045hDg=
+
 vuepress-plugin-container@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npmjs.org/vuepress-plugin-container/-/vuepress-plugin-container-2.0.2.tgz#3489cc732c7a210b31f202556e1346125dffeb73"
