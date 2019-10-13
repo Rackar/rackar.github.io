@@ -1,3 +1,4 @@
+var sidebar = require('./config/sidebar')
 module.exports = {
   title: 'Coding Yang BLOG',
   description: 'Just playing around',
@@ -5,7 +6,14 @@ module.exports = {
   themeConfig: {
     nav: [
       {text: '首页', link: '/'},
-      {text: '文章', link: '/article/'},
+      {
+        text: '文章',
+        items: [
+          {text: '儿童编程教育', link: '/article_child/'},
+          {text: '技术文章', link: '/article_tech/'},
+          {text: '个人', link: '/article_self/'}
+        ]
+      },
       {
         text: '教育软件',
         items: [
@@ -18,7 +26,7 @@ module.exports = {
           {text: '相关介绍', link: '/child/'}
         ]
       },
-      {text: '其他程序', link: '/code/survey'},
+      {text: '其他程序', link: '/code/'},
       {
         text: '联系我',
         ariaLabel: '其他技术博客',
@@ -33,15 +41,7 @@ module.exports = {
       }
     ],
     // sidebar: 'auto', //自动侧边栏
-    sidebar: {
-      '/article/': ['' /* /foo/ */, 'tech/front', 'child/yuer', 'self/diary'],
-
-      '/child/': ['', 'code' /* /bar/ */],
-      '/code/': ['survey', 'other' /* /bar/ */],
-
-      // fallback
-      '/': ['' /* / */, 'about/' /* /about.html */]
-    }
+    sidebar: sidebar
     // displayAllHeaders: true // 默认值：false
   },
   locales: {

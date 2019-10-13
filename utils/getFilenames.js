@@ -3,9 +3,9 @@ const {resolve} = require('path')
 
 // const FOLDERPATH = './docs/article'
 const PathsIn = [
-  './docs/article/child',
-  ',/docs/article/self',
-  ',/docs/article/code'
+  './docs/article_child',
+  './docs/article_self',
+  './docs/article_tech'
 ]
 readdirs(PathsIn)
 
@@ -14,7 +14,7 @@ function readdirs(paths) {
     readdir(FOLDERPATH, (err, files) => {
       let filenames = []
       files.forEach(file => {
-        if (file === 'README.md') {
+        if (file.toLowerCase() === 'readme.md') {
           file = `''`
         } else {
           file = file.replace('.md', '')
