@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "getname": "node utils/getFilenames.js",
+    "docs:list": "node utils/getFilenames.js",
     "docs:build": "vuepress build docs"
   },
   "license": "MIT",

@@ -1,33 +1,70 @@
-const {readdir, writeFile} = require('fs')
-const {resolve} = require('path')
+const {readdir, readFile, writeFile} = require('fs')
+// const {resolve} = require('path')
 
 // const FOLDERPATH = './docs/article'
 const PathsIn = [
-  './docs/article_child',
-  './docs/article_self',
-  './docs/article_tech'
+  './docs/article_child/',
+  './docs/article_self/',
+  './docs/article_tech/'
 ]
-readdirs(PathsIn)
 
-function readdirs(paths) {
-  paths.forEach(FOLDERPATH => {
-    readdir(FOLDERPATH, (err, files) => {
+function pReadFile(filepath) {
+  return new Promise((resolve, reject) => {
+    readdir(filepath, (err, files) => {
       let filenames = []
       files.forEach(file => {
         if (file.toLowerCase() === 'readme.md') {
-          file = `''`
+          file = ``
         } else {
           file = file.replace('.md', '')
-          file = `'${file}'`
+          file = `${file}`
         }
         filenames.push(file)
       })
 
       filenames.sort() // 排序
+      resolve(filenames)
+    })
+  })
+}
 
-      writeFile(resolve(__dirname, './filenames.js'), `[${filenames}]`, () => {
-        console.log('文件名获取完成.')
-      })
+Promise.all([
+  pReadFile(PathsIn[0]),
+  pReadFile(PathsIn[1]),
+  pReadFile(PathsIn[2])
+]).then(
+  arr => {
+    console.log(arr)
+    var params = {
+      '/article_child/': arr[0],
+      '/article_self/': arr[1],
+      '/article_tech/': arr[2]
+    }
+    writeJson(params)
+  },
+  err => console.log(err)
+)
+
+function writeJson(params) {
+  //现将json文件读出来
+  readFile('./docs/.vuepress/config/sidebar.json', function(err, data) {
+    if (err) {
+      return console.error(err)
+    }
+    var person = data.toString() //将二进制的数据转换为字符串
+
+    person = JSON.parse(person) //将字符串转换为json对象
+    // person['/article_child/'] = params['/article_child/']
+    for (let key in params) {
+      person[key] = params[key]
+    }
+    console.log(person)
+    var str = JSON.stringify(person) //因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
+    writeFile('./docs/.vuepress/config/sidebar.json', str, function(err) {
+      if (err) {
+        console.error(err)
+      }
+      console.log('----------新增成功-------------')
     })
   })
 }

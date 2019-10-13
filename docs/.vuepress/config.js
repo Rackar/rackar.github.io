@@ -1,4 +1,4 @@
-var sidebar = require('./config/sidebar')
+var sidebar = require('./config/sidebar.json')
 module.exports = {
   title: 'Coding Yang BLOG',
   description: 'Just playing around',
