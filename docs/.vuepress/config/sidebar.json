@@ -1,9 +1,1 @@
-{
-  "/article_child/": ["", "a1", "a2", "shizi"],
-  "/article_tech/": ["", "a1", "a2", "shizi"],
-  "/article_self/": ["", "a1", "a2", "shizi"],
-  "/child/": ["", "code"],
-  "/code/": ["", "other"],
-  "/about/": [""],
-  "/": [""]
-}
+{"/article_child/":["","a1","a2","shizi"],"/article_tech/":["","a1","a2","shizi"],"/article_self/":["","a1","a2","shizi"],"/child/":["","code"],"/code/":["","other"],"/about/":[""],"/":[""]}

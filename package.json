@@ -4,7 +4,7 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:list": "node utils/getFilenames.js",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs && node utils/bd_hm.js"
   },
   "license": "MIT",
   "devDependencies": {
