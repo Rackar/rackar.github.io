@@ -35,3 +35,15 @@ npm run docs:dev
 npm run docs:list
 npm run docs:built
 ```
+
+## 如何直接发布到 github page
+
+```
+docs:build:gitpage
+docs:push:gitpage
+```
+
+使用这两条命令，编译为 github page 或其他部署到非根目录下的 html。
+
+要 **修改** package.json 中 docs:build:gitpage 命令里的： VUEPRESS_BASE=/codingyang/为自己要部署的子目录，
+其中 github page 即为项目名，发布方式为分支名 gh-pages 方式推送。
