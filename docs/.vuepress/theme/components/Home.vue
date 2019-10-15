@@ -14,8 +14,8 @@
 
     <div class="features" v-if="data.features && data.features.length">
       <div class="feature" v-for="(feature, index) in data.features" :key="index">
-        <a :href="feature.url">
-          <img class="image_title" :src="'/pic'+feature.imgname" :alt="feature.title" />
+        <a :href="$withBase(feature.url)">
+          <img class="image_title" :src="$withBase('/pic'+feature.imgname)" :alt="feature.title" />
           <h2>{{ feature.title }}</h2>
           <p>{{ feature.details }}</p>
         </a>
@@ -116,7 +116,7 @@ export default {
 
     .image_title {
       width: 14rem;
-      height :10rem;
+      height: 10rem;
     }
 
     h2 {
