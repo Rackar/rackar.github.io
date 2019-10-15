@@ -2,7 +2,7 @@ var sidebar = require('./config/sidebar.json')
 module.exports = {
   title: 'Coding Yang BLOG',
   description: 'Just playing around',
-  //   base: '/codingyang/',
+  base: process.env.VUEPRESS_BASE || '/',
   themeConfig: {
     nav: [
       {text: '首页', link: '/'},
