@@ -19,7 +19,6 @@ jobs:
       - name: npm install, build, and publish
         run: |
           npm install
-          npm run docs:list
           npm run docs:build:gitpage
           npm run docs:push:gitpage
         env:
