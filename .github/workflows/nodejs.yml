@@ -20,6 +20,7 @@ jobs:
         run: |
           npm install
           npm run docs:build:gitpage
+          git commit -m "commit before push"
           npm run docs:push:gitpage
         env:
           CI: true
