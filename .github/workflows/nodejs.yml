@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -19,9 +19,8 @@ jobs:
       - name: npm install, build, and publish
         run: |
           npm install
-          npm run docs:dev --if-present
           npm run docs:list
-          npm run docs:build
-          npm run docs:push
+          npm run docs:build:gitpage
+          npm run docs:push:gitpage
         env:
           CI: true
