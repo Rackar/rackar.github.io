@@ -16,12 +16,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, and publish
-        run: |
-          npm install
-          npm run docs:build:gitpage
-          git add -A
-          git commit -m "commit before push"
-          npm run docs:push:gitpage
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@master
         env:
-          CI: true
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BASE_BRANCH: master # The branch the action should deploy from.
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: dist # The folder the action should deploy.
+          BUILD_SCRIPT: npm install && npm run docs:build:gitpage # The build script the action should run prior to deploying.
