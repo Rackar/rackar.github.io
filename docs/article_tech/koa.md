@@ -24,7 +24,7 @@ var mongoose = require('mongoose')
 var testDB = 'mongodb://localhost:27017/rackar'
 mongoose.connect(
   testDB,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  {useNewUrlParser: true, useUnifiedTopology: true},
   function(err) {
     if (err) {
       console.log('connect fail')
@@ -66,7 +66,7 @@ router.prefix('/api')
 router.get('/article', async function(ctx, next) {
   let result = await Article.find().then(resultArr => {
     return resultArr.map(obj => {
-      return { content: obj.content, title: obj.title }
+      return {content: obj.content, title: obj.title}
     })
   })
   ctx.body = result
@@ -199,8 +199,8 @@ const router = require('koa-router')()
 var User = require('../models/user')
 
 router.post('/login', async function(ctx, next) {
-  let { username, password } = ctx.request.body
-  let result = await User.findOne({ username, password })
+  let {username, password} = ctx.request.body
+  let result = await User.findOne({username, password})
 
   if (result) {
     ctx.body = '登录成功'
@@ -211,7 +211,7 @@ router.post('/login', async function(ctx, next) {
 })
 
 router.post('/signup', async function(ctx, next) {
-  let { username, password } = ctx.request.body
+  let {username, password} = ctx.request.body
   var user = await new User({
     username,
     password
@@ -266,8 +266,8 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 
 router.post('/login', async function(ctx, next) {
-  let { username, password } = ctx.request.body
-  let result = await User.findOne({ username, password })
+  let {username, password} = ctx.request.body
+  let result = await User.findOne({username, password})
 
   if (result) {
     let token = jwt.sign(
@@ -316,4 +316,76 @@ module.exports = router
 
 ## 统一 token 鉴权
 
-未完待续
+手写了半天没搞定，弱鸡还是得妥妥的用官方中间件。https://github.com/koajs/jwt 。直接安装：
+
+`npm i koa-jwt`
+
+修改/app.js
+
+```js {9,12,13,18-27,53,54,55,57}
+const Koa = require('koa')
+const app = new Koa()
+// const views = require('koa-views')
+const json = require('koa-json')
+// const onerror = require('koa-onerror')
+const bodyparser = require('koa-bodyparser')
+const logger = require('koa-logger')
+
+const noauth = require('./routes/noAuth')
+const api = require('./routes/api')
+
+const jwt = require('koa-jwt')
+const config = require('./config/index')
+// error handler
+// onerror(app)
+
+// Custom 401 handling if you don't want to expose koa-jwt errors to users
+app.use(function(ctx, next) {
+  return next().catch(err => {
+    if (401 == err.status) {
+      ctx.status = 401
+      ctx.body = 'Protected resource, use Authorization header to get access\n'
+    } else {
+      throw err
+    }
+  })
+})
+
+// middlewares
+app.use(
+  bodyparser({
+    enableTypes: ['json', 'form', 'text']
+  })
+)
+app.use(json())
+app.use(logger())
+app.use(require('koa-static')(__dirname + '/public'))
+
+// app.use(
+//   views(__dirname + '/views', {
+//     extension: 'pug'
+//   })
+// )
+
+// logger
+app.use(async (ctx, next) => {
+  const start = new Date()
+  await next()
+  const ms = new Date() - start
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+})
+
+app.use(
+  jwt({secret: config.jwtsecret}).unless({path: [/^\/public/, /^\/noauth/]})
+)
+// routes
+app.use(noauth.routes(), noauth.allowedMethods())
+app.use(api.routes(), api.allowedMethods())
+
+// // error-handling
+// app.on('error', (err, ctx) => {
+//   console.error('server error', err, ctx)
+// })
+
+module.exports = app
+```
