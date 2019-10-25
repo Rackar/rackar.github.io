@@ -2,6 +2,16 @@
 
 之前基本写好了 Express 的后台程序，为了解决回调地狱的问题，搭 koa 看看。koa 可以通过 async/await 的方式写。
 
+## 基础教程链接
+
+node.js 和 npm 基础
+
+git 基础
+
+vs code 基础
+
+mongodb 环境搭建
+
 ## 开始环境(脚手架)
 
 安装 koa-generator，利用 koa-generator 快速搭建 Node.js 服务器
@@ -88,7 +98,7 @@ router.post('/article', async function(ctx, next) {
 module.exports = router
 ```
 
-## 使用 nodemon 开启调试（自动保存时热更新）
+## nodemon 调试热更新
 
 新建.vscode/launch.json，保存之后 F5 开启服务器进行调试
 
@@ -309,7 +319,7 @@ module.exports = router
 ```
 
 ::: warning
-将 token 字符串复制到 jwt.io 的 encode 区，右边可解析出明文的 userid 和 username。前端以这样从 token 解析的方式拿到的 userid，就很难被篡改了。
+将 token 字符串复制到 http://jwt.io 的 encode 区，右边可解析出明文的 userid 和 username。前端以这样从 token 解析的方式拿到的 userid，就很难被篡改了。
 :::
 
 ![解析token](../pic/jwtio.png)
@@ -320,7 +330,7 @@ module.exports = router
 
 `npm i koa-jwt`
 
-修改/app.js
+修改/app.js，见高亮行，加载库，新建一个错误捕获中间件，在 routes 前调用 jwt 中间件，传入密钥和例外路径。
 
 ```js {9,12,13,18-27,53,54,55,57}
 const Koa = require('koa')
@@ -389,3 +399,106 @@ app.use(api.routes(), api.allowedMethods())
 
 module.exports = app
 ```
+
+### 修改路由组织
+
+将所有路由 api 分拆成两组，有/api/前缀的需要检查 token 正确，有/noauth/前缀的不检查。分拆后的/routes/文件夹下 3 个文件：
+
+- api.js
+
+```js
+const router = require('koa-router')()
+const Article = require('../models/article')
+router.prefix('/api')
+
+router.post('/article', async function(ctx, next) {
+  let body = ctx.request.body
+  var article = await new Article({
+    content: ctx.request.body.content,
+    title: ctx.request.body.title
+  })
+  article.save()
+
+  ctx.body = {
+    msg: '新增成功'
+  }
+})
+
+module.exports = router
+```
+
+- noauth.js
+
+```js
+const router = require('koa-router')()
+const Article = require('../models/article')
+const users = require('./users')
+router.prefix('/noauth')
+
+router.get('/article', async function(ctx, next) {
+  let result = await Article.find()
+  result = result.map(obj => {
+    return {content: obj.content, title: obj.title}
+  })
+  ctx.body = result
+})
+
+router.use(users.routes(), users.allowedMethods())
+
+module.exports = router
+```
+
+- user.js
+
+```js
+const router = require('koa-router')()
+const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+const config = require('../config')
+
+router.post('/login', async function(ctx, next) {
+  let {username, password} = ctx.request.body
+  let result = await User.findOne({username, password})
+
+  if (result) {
+    let token = jwt.sign(
+      {
+        username, //payload部分可解密获取，不能放敏感信息
+        userid: result._id
+      },
+      config.jwtsecret,
+      {
+        expiresIn: config.expiresIn // 授权时效1天
+      }
+    )
+    ctx.body = {
+      msg: '登录成功',
+      token
+    }
+  } else {
+    ctx.response.status = 401
+    ctx.body = {
+      msg: '登录失败',
+      token: null
+    }
+  }
+})
+
+router.post('/signup', async function(ctx, next) {
+  let {username, password} = ctx.request.body
+  var user = await new User({
+    username,
+    password
+  })
+  user.save()
+  ctx.body = {
+    msg: '注册成功'
+  }
+})
+
+module.exports = router
+```
+
+## 收尾
+
+这样基本的鉴权和注册登录有了，下一步详细的 api 功能设计
