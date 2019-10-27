@@ -499,6 +499,88 @@ router.post('/signup', async function(ctx, next) {
 module.exports = router
 ```
 
+## 解决跨域
+在app.js的判断token和路由中间件调用之间，加入如下代码。搞定OPTIONS问题和CORS问题。
+```js
+// 解决跨域和options请求问题，集中处理错误
+const handler = async (ctx, next) => {
+  // log request URL:
+  ctx.set('Access-Control-Allow-Origin', '*')
+  ctx.set(
+    'Access-Control-Allow-Methods',
+    'POST, GET, OPTIONS, PATCH, HEAD, PUT, DELETE'
+  )
+  ctx.set('Access-Control-Max-Age', '3600')
+  ctx.set(
+    'Access-Control-Allow-Headers',
+    'x-requested-with,Authorization,Content-Type,Accept'
+  )
+  ctx.set('Access-Control-Allow-Credentials', 'true')
+  if (ctx.request.method == 'OPTIONS') {
+    ctx.response.status = 200
+  } else {
+    console.log(`Process ${ctx.request.method} ${ctx.request.url}`)
+  }
+
+  try {
+    await next()
+    console.log('handler通过')
+  } catch (err) {
+    console.log('handler处理错误')
+    ctx.response.status = err.statusCode || err.status || 500
+    ctx.response.body = {
+      message: err.message
+    }
+  }
+}
+app.use(handler)
+```
+
+
+
+## 上传图片模块
+继续使用现成的中间件
+`npm i koa-multer`
+
+新建/routes/upload/index.js，内容如下。设定了存储路径，上传路由和返回
+```js
+const router = require('koa-router')()
+const multer = require('koa-multer')
+
+router.prefix('/upload')
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + file.originalname)
+  }
+})
+const upload = multer({storage: storage})
+
+router.post('/image', upload.single('avatar'), function(ctx, next) {
+  ctx.body = 'ok'
+})
+
+module.exports = router
+```
+给noauth.js增加以下两行
+```js
+const upload = require('./upload')
+router.use(upload.routes(), upload.allowedMethods()) // /upload
+```
+此时上次文件api地址为/noauth/upload/image
+
+使用form.Data, avatar上传图片测试，没问题。
+
+## 发布图片路径
+在app.js增加以下
+```js
+app.use(require('koa-static')(__dirname + '/uploads'))
+```
+则可以通过http://localhost:3000/2.jpg 获取到node_koa/uploads/2.jpg，这个上次路径中的图片
+
 ## 收尾
 
-这样基本的鉴权和注册登录有了，下一步详细的 api 功能设计
+这样基本的鉴权和注册登录有了，跨域和上次也测通，下一步详细的 api 功能设计
