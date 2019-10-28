@@ -1,6 +1,10 @@
-# 手把手 Koa2 开发 RESTful Api 教程
+# 手把手 Koa2 开发 REST Api
 
 之前基本写好了 Express 的后台程序，为了解决回调地狱的问题，搭 koa 看看。koa 可以通过 async/await 的方式写。
+
+express 版本源码：https://github.com/Rackar/node_blog
+
+koa2 版本源码：https://github.com/Rackar/node_koa
 
 ## 基础教程链接
 
@@ -10,7 +14,7 @@ git 基础
 
 vs code 基础
 
-mongodb 环境搭建
+[mongodb 环境搭建](./mongoStart)
 
 ## 开始环境(脚手架)
 
@@ -500,7 +504,9 @@ module.exports = router
 ```
 
 ## 解决跨域
-在app.js的判断token和路由中间件调用之间，加入如下代码。搞定OPTIONS问题和CORS问题。
+
+在 app.js 的判断 token 和路由中间件调用之间，加入如下代码。搞定 OPTIONS 问题和 CORS 问题。
+
 ```js
 // 解决跨域和options请求问题，集中处理错误
 const handler = async (ctx, next) => {
@@ -536,13 +542,13 @@ const handler = async (ctx, next) => {
 app.use(handler)
 ```
 
-
-
 ## 上传图片模块
+
 继续使用现成的中间件
 `npm i koa-multer`
 
 新建/routes/upload/index.js，内容如下。设定了存储路径，上传路由和返回
+
 ```js
 const router = require('koa-router')()
 const multer = require('koa-multer')
@@ -565,21 +571,27 @@ router.post('/image', upload.single('avatar'), function(ctx, next) {
 
 module.exports = router
 ```
-给noauth.js增加以下两行
+
+给 noauth.js 增加以下两行
+
 ```js
 const upload = require('./upload')
 router.use(upload.routes(), upload.allowedMethods()) // /upload
 ```
-此时上次文件api地址为/noauth/upload/image
 
-使用form.Data, avatar上传图片测试，没问题。
+此时上次文件 api 地址为/noauth/upload/image
+
+使用 form.Data, avatar 上传图片测试，没问题。
 
 ## 发布图片路径
-在app.js增加以下
+
+在 app.js 增加以下
+
 ```js
 app.use(require('koa-static')(__dirname + '/uploads'))
 ```
-则可以通过http://localhost:3000/2.jpg 获取到node_koa/uploads/2.jpg，这个上次路径中的图片
+
+则可以通过http://localhost:3000/2.jpg 获取到 node_koa/uploads/2.jpg，这个上次路径中的图片
 
 ## 收尾
 
