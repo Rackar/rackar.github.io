@@ -1,4 +1,57 @@
-# git 使用技巧
+# git 基础教程
+
+## 起步操作
+
+### 基本介绍
+
+通过建立个人分支，拉取代码，提交代码，推送代码来保持本地库和远程库更新，同时具有代码各版本留存和回溯，并可多人协作。
+
+### 安装
+
+Windows 下载一路安装：
+https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/Git-2.21.0-64-bit.exe
+
+### 添加用户信息
+
+如果新安装的 git，需要添加本地库用户名和邮箱标识，下面两行改为自己的名称和邮箱，在命令行执行：
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+
+### 基本命令
+
+git clone http://xxxxx.git //克隆（复制）远程代码到本地
+
+git pull //将远程库的更新内容拉取到本地
+
+git commit -m "备注" //将暂存的更改提交到本地库，vs code 中只需在源码控制页添加备注然后 control+回车 即可实现本行命令。经常 commit 相当于保存了多个版本记录，可随时回退到任何提交时间点的代码。
+
+git push //将本地提交后的新内容推送到远程
+
+git branch -a 查看分支和当前分支 （\*为当前）
+
+git checkout fenzhi 切换到 fenzhi 分支（文件和代码同时会变化过去，加-b 参数是复制并新建分支）
+
+git merge fenzhi 将 fenzhi 分支上的代码合并回当前分支。
+
+### 新建本人所属分支并推送到远程
+
+git checkout -b xinde //以当前分支的内容复制到新分支 xinde,并切换分支到 xinde
+
+git push origin xinde:xinde //将新的分支推送到远程库中 xinde 分支
+
+git push --set-upstream origin xinde //设置远程库与 xinde 分支的关联
+
+### 拉取本地不存在的远程分支
+
+git checkout -b 本地分支名称 origin/远程分支名称
+
+### 更换远程仓库
+
+将原来的 origin 仓库变更为新的：
+git remote set-url origin https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
+
+也可以使用双远程仓库：
+git remote add origin2 https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
 
 ## git rebase 使用
 
