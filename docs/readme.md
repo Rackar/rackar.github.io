@@ -4,10 +4,18 @@ heroText: CodingYang博客
 tagline: 注册测绘师 / 业余码农 / 儿童成长陪伴员
 
 features:
-  - title: 文章
-    details: 博客文章列表，包括儿童编程、儿童教育及程序开发、个人感悟等主题。
+  - title: 技术文章
+    details: Vue.js前端开发，Node.js后台开发，MongoDB数据库。以及其他开发类文章
+    url: /article_tech/
+    imgname: /coding.jpg
+  - title: 儿童相关文章
+    details: 儿童编程、儿童教育等相关文章。
     url: /article_child/
     imgname: /article.jpg
+  - title: 个人文章
+    details: 生活点滴，价值观和日记。
+    url: /article_self/
+    imgname: /dairy.jpg
   - title: 儿童教育程序
     details: 自己在陪伴孩子成长过程中开发的一些程序软件。
     url: /child/

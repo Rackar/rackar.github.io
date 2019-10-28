@@ -9,8 +9,9 @@ module.exports = {
       {
         text: '文章',
         items: [
-          {text: '儿童编程教育', link: '/article_child/'},
           {text: '技术文章', link: '/article_tech/'},
+          {text: '儿童编程教育', link: '/article_child/'},
+
           {text: '个人', link: '/article_self/'}
         ]
       },

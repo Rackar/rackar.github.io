@@ -117,6 +117,7 @@ export default {
     .image_title {
       width: 14rem;
       height: 10rem;
+      border-radius: 8px;
     }
 
     h2 {
