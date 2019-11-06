@@ -1,3 +1,82 @@
+# centOS 初始化
+
+## 安装 docker
+
+依赖
+yum install -y yum-utils device-mapper-persistent-data lvm2
+添加 Docker 软件包源
+yum-config-manager \
+--add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
+
+安装
+yum install docker-ce docker-ce-cli containerd.io -y
+
+启动
+systemctl start docker
+开机自启
+systemctl enable docker
+版本
+docker version
+拉取镜像
+docker pull python:3.5
+启动挂载镜像
+mkdir myapp
+
+```
+docker run --name python35 -v $PWD/myapp:/usr/src/myapp -itd -w /usr/src/myapp python:3.5
+docker exec -it python35 bash
+pip install requests
+pip install pandas
+nohup python -u huanbao.py >myouthb.out  &
+nohup python -u qixiang.py >myoutqx.out  &
+```
+
+```
+用途：不挂断地运行命令
+语法：nohup Command [ Arg ... ] [　& ]
+描述：nohup 命令运行由 Command 参数和任何相关的 Arg 参数指定的命令，忽略所有挂断（SIGHUP）信号。在注销后使用 nohup 命令运行后台中的程序。要运行后台中的 nohup 命令，添加 & （ 表示“and”的符号）到命令的尾部。
+操作系统中有三个常用的流：
+0：标准输入流 stdin
+1：标准输出流 stdout
+2：标准错误流 stderr
+一般当我们用 > console.txt，实际是 1>console.txt的省略用法；
+< console.txt ，实际是 0 < console.txt的省略用法。
+
+
+```
+
+## 更换 docker 镜像源下载地址
+
+```
+vi /etc/docker/daemon.json
+按下insert
+
+{
+"registry-mirrors": [
+"https://kfwkfulq.mirror.aliyuncs.com",
+"https://2lqq34jg.mirror.aliyuncs.com",
+"https://pee6w651.mirror.aliyuncs.com",
+"https://registry.docker-cn.com",
+"http://hub-mirror.c.163.com"
+]
+}
+
+:wq
+systemctl restart docker
+```
+
+## 拉取 nginx
+
+docker pull nginx
+docker run --name nginx_test -it -p 80:80 -v /home/dockerdata:/data nginx
+
+docker run --name test -p 8081:80 -itd nginx bash
+
+docker run -d -p 8082:80 --name nginxweb -v /home/WebManager/Nginx/www:/usr/share/nginx/html -v /home/WebManager/Nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/WebManager/Nginx/logs:/var/log/nginx nginx
+
+docker run -d -p 8082:80 --name nginxweb -v /home/WebManager/Nginx/conf/nginx.conf:/etc/nginx/nginx.conf nginx
+
 # wsl 安装 docker
 
 ## 参考文档

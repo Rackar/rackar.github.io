@@ -1,10 +1,51 @@
-# Node 爬虫
+# Node 爬虫编写
 
 ## 介绍
 
 之前用 python 勉强写过几个爬虫，但是语言特性和库都掌握的非常差，实在用不好。换回 node 重写。
 
-场景是最简单的知道 apiurl 请求 json，然后存入本地或者 MongoDB。
+场景是最简单的知道 apiurl 请求 json，可写入 json 或 mongodb。用到了简单的几个库，可配置 socks5 代理。
+
+项目地址：https://github.com/Rackar/tinycrawl
+
+项目文档：http://www.codingyang.com/article_tech/nodeCrawl.html
+
+## 运行参数
+
+- 是否写入 mongodb
+
+  `-noDB` 启动时加上则不写入 db
+
+- 是否写入 JSON
+
+  `-noJSON` 启动时加上则不写入 json
+
+- 是否使用本地 7070 代理
+
+  `-useProxy` 启动时加上则开启本地 sock5 7070 端口代理
+
+## 调试时设置参数
+
+调试时需要修改./vscode/launch.json，将参数加入 args 数组。如：
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "启动程序",
+      "program": "${workspaceFolder}\\index.js",
+      "args": ["-useProxy"]
+    }
+  ]
+}
+```
+
+## 小工具
+
+utils 里面有 3 个小工具，一个 await 延时，一个格式化日期，一个去处 js 对象 key 中的'.'(无法写入 mongo)
 
 ## 准备工作
 
@@ -29,7 +70,7 @@ async function getTodayData() {
     let date = new Date();
     let timeStr = "日：" + date.format("YYYY-MM-DD") + "日";
     let result = await saveResultJson(urlFormat, timeStr);
-    await Day.collection.insertMany(result, onInsert);
+    Day.collection.insertMany(result, onInsert);
   }
 }
 ```
@@ -75,7 +116,7 @@ var DaySchema = new Schema(
     body: Object,
     city: String
   },
-  {strict: false}
+  { strict: false }
 );
 module.exports = mongoose.model("Day", DaySchema);
 ```
