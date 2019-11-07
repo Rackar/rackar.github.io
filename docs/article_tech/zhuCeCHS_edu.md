@@ -2,15 +2,32 @@
 
 具体什么课就不说了，保存一下脚本，可以最小化听课。屏蔽掉了失焦点视频暂停和验证码。
 
-## 脚本
+## 视频页脚本（无需插件）
+
+### 脚本代码
+
+复制下面 3 行
+
 ```js
-$("body").off('blur');
-window.onblur=function(){}
-$.fn.pointsVerify=function(options,callbacks){options.success()}
+$("body").off("blur");
+window.onblur = function() {};
+$.fn.pointsVerify = function(options, callbacks) {
+  options.success();
+};
 ```
 
+### 用法
 
-## 用法
+打开课程点 F12，找到 Console 标签，在下方箭头输入处粘贴这 3 行代码，回车就行。
 
-打开课程点 F12，找到 Console 标签，在下方箭头输入处粘贴这 3 行代码，回车就行
 ![](../pic/zcchs.jpg)
+
+缺点是播放完了过一会又会重头放，看到弹框提示记录已保存的就说明整节课听完了。
+
+## 油猴自动挂机脚本
+
+这个有点难度，要在谷歌 Chrome 浏览器里安装油猴插件，然后导入我的 2 个脚本。
+
+不过用法就简单了。进入继续教育页课程列表，然后就什么都不用做了，未完成的课程会**全自动**完整顺序播放。
+
+插件地址
