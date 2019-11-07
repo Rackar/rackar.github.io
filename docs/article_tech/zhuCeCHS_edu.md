@@ -34,6 +34,8 @@ $.fn.pointsVerify = function(options, callbacks) {
 
 自行搜索 Chrome 安装油猴插件的方法，如果不能翻墙直接安装，可以搜索开发者模式离线安装 Chrome 插件的方法。
 
+或者参考本文：[Chrome 安装油猴插件](./zhuceYouhou)
+
 #### 脚本下载安装
 
 油猴脚本安装启用后，点击下面两个链接下载脚本。。
