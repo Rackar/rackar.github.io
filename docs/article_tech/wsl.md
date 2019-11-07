@@ -1,7 +1,10 @@
 # centOS 初始化
 
+20191108
+
 ## 安装 docker
 
+```
 依赖
 yum install -y yum-utils device-mapper-persistent-data lvm2
 添加 Docker 软件包源
@@ -18,12 +21,73 @@ systemctl start docker
 systemctl enable docker
 版本
 docker version
+docker pull centos:7
+mkdir myapp
+docker run --name centos -p 80:80 -v $PWD/myapp:/usr/src/myapp -itd -w /usr/src/myapp centos:7 bash
+
+docker exec -it centos bash
+```
+
+## 官网方法安装 nginx
+
+yum install yum-utils -y
+
+vi /etc/yum.repos.d/nginx.repo
+
+添加下面文件保存
+
+```
+[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+```
+
+yum install nginx -y
+
+## 配置 nginx
+
+<!-- ```
+By default, the repository for stable nginx packages is used. If you would like to use mainline nginx packages, run the following command:
+
+sudo yum-config-manager --enable nginx-mainline
+``` -->
+
+## 其他次安装
+
+```
+安装 git(centos自带1.8，不用装）：
+yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel -y
+yum install gcc perl-ExtUtils-MakeMaker -y
+
+mkdir tmp
+cd /tmp
+curl -O https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.22.0.tar.gz
+
+tar xzf git-2.22.0.tar.gz
+cd git-2.22.0
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install
+echo "export PATH=\$PATH:/usr/local/git/bin" >> /etc/bashrc
+source /etc/bashrc
+```
+
+```
 拉取镜像
 docker pull python:3.5
 启动挂载镜像
 mkdir myapp
-
-```
 docker run --name python35 -v $PWD/myapp:/usr/src/myapp -itd -w /usr/src/myapp python:3.5
 docker exec -it python35 bash
 pip install requests
