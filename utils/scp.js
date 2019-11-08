@@ -1,13 +1,28 @@
 let client = require("scp2");
-let config = require("./secret");
+let {secret} = require("./secret");
+
+//
+// secret.js 格式
+//
+// const config = {
+//   host: "xx.xxx.xxx.xx",
+//   username: "root",
+//   password: "password",
+//   path: "/root/myapp/www/"
+// };
+//
+// exports.config = config;
+//
+
+//scp覆盖上传整个目录
 client.scp(
   "docs/.vuepress/dist/",
-  // "22.txt",
+  // "2.txt",
   {
-    host: config.secret.host,
-    username: config.secret.username,
-    password: config.secret.password,
-    path: config.secret.path
+    host: secret.host,
+    username: secret.username,
+    password: secret.password,
+    path: secret.path
   },
   function(err) {
     if (err) {
@@ -17,14 +32,3 @@ client.scp(
     }
   }
 );
-
-// secret.js
-//
-// const config = {
-//   host: "xx.xxx.xxx.xx",
-//   username: "root",
-//   password: "password",
-//   path: "/root/myapp/www/"
-// };
-
-// exports.config = config;

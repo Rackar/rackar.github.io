@@ -57,9 +57,13 @@ yarn docs:built
 第一个命令将文章栏目下三个文件夹中的文件加入侧边栏（文章索引），
 第二个打包为部署在根路径下的 index.html 文件和其他所有静态页面资源。
 
-5. 或者利用自动持续集成发布到 github page
+5. 利用自动持续集成发布到 github page
 
 这里需要：开启项目 action，开启 page，设置 secret，修改脚本中的/codingyang/为自己的项目名。然后 git push 就好，CI 脚本自动发布。
+
+6. 利用 scp2 自动上传 CentOS 服务器发布
+
+如果需要发布到自己的服务器，利用 node 加 scp 直接把打包好的 dist 传到 linux 服务器上配置好 nginx 的路径。代码在/utils/scp，还要在该目录新建一个 secret.js 保存敏感的 ip 和登录信息。（已配置.gitignore，不会上传暴露）
 
 ## 小提示
 
