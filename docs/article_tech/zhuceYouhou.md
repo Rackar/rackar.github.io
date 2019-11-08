@@ -2,6 +2,8 @@
 
 Tampermonkey（油猴）插件，可以直接在网页上运行 js 脚本，简化操作。
 
+有翻墙条件可以直接安装，否则只好使用开发者模式安装。
+
 ## 直接安装（需翻墙）
 
 点击 [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) 安装
@@ -12,6 +14,8 @@ Tampermonkey（油猴）插件，可以直接在网页上运行 js 脚本，简�
 ![](../pic/google1.jpg)
 点击左上角三个横，打开 Chrome 网上应用商店,搜索 Tampermonkey，点击添加到 Chrome。我这里已经安装了所以按钮显示为评分。
 ![](../pic/google2.jpg)
+
+完成安装
 
 ## 开发者模式安装
 
