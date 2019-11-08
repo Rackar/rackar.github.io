@@ -58,6 +58,50 @@ yum install nginx -y
 
 ## 配置 nginx
 
+```
+查看配置路径和是否正确
+nginx -t
+查看错误日志
+cat /var/log/nginx/error.log
+启动
+nginx 或者指定配置文件路径 nginx -c /etc/nginx/nginx.conf
+重载配置
+nginx -s reload
+```
+
+测试配置全文/etc/nginx/nginx.conf
+
+```
+
+```
+
+#### 1.报错 stat() failed 13 Permission denied
+
+由于目录属于 root，nginx 没有权限访问（`sudo -u nginx stat /root/myapp/www`会报 Permission denied。用以下命令将 nginx 加入 root 组，生产模式谨慎）
+
+```
+gpasswd -a nginx root
+chmod g+x /root && chmod g+x /root/myapp && chmod g+x /root/myapp/www
+
+```
+
+#### 2.报错 invalid PID number "" in "/run/nginx.pid"
+
+有时运行 reload 会报，需要将 nginx 进程 id 放进这个文件。
+
+```
+cat /run/nginx.pid（会无返回，说明为空）
+ps -ef | grep nginx （查找搜索进程中nginx相关，返回结果中找 nginx: master process nginx ，第二列为pid）
+
+root      7665  3436  0 21:49 pts/0    00:00:00 grep --color=auto nginx
+root     11403     1  0 01:15 ?        00:00:00 nginx: master process nginx
+nginx    12023 11403  0 01:20 ?        00:00:00 nginx: worker process
+
+将查到的pid 11403写入之前的空文件，然后重载
+echo 11403 > /run/nginx.pid
+nginx -s reload
+```
+
 <!-- ```
 By default, the repository for stable nginx packages is used. If you would like to use mainline nginx packages, run the following command:
 
