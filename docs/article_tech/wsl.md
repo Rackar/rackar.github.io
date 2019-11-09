@@ -152,30 +152,118 @@ echo 11403 > /run/nginx.pid
 nginx -s reload
 ```
 
+## 安装 node 和 npm
+
+检查有没有 wget 和 tar。用 node 官网的 12.13 版本下载安装
+
+```
+cd /root
+mkdir /root/tmp && cd /root/tmp
+wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+mkdir -p /usr/local/lib/nodejs
+tar -xJvf node-v12.13.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
+
+安全写入环境变量并更新：
+echo "export PATH=/usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin:$PATH" > /etc/profile.d/node.sh
+source /etc/profile
+node -v && npm -v && npx -v
+
+还有创建链接方式（暂不推荐）：
+sudo ln -s /usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin/node /usr/bin/node
+sudo ln -s /usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin/npm /usr/bin/npm
+sudo ln -s /usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin/npx /usr/bin/npx
+```
+
+## 安装 git
+
+```shell
+# 检查有没有安装git
+git --version
+
+# 使用git旧版1.8.0
+yum install git
+
+# 下面源码编译安装最新版2.24.0：
+# 安装编译依赖
+yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker -y
+
+# 获取最新版本查看： https://mirrors.edge.kernel.org/pub/software/scm/git/
+cd /root/tmp
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.24.0.tar.gz
+
+# 解压
+tar xzf git-2.24.0.tar.gz
+cd ./git-2.24.0
+
+# 检验相关依赖，设置安装路径
+./configure --prefix=/usr/local/git
+
+# 编译安装
+make && make install
+
+# 安全写入环境变量并更新：
+echo "export PATH=/usr/local/git/bin:$PATH" > /etc/profile.d/git.sh
+source /etc/profile
+git --version
+# 居然显示1.8.1我要疯了，这是一个轮回吗
+git config --global user.name "name"
+git config --global user.email "222222@qq.com"
+```
+
 <!-- ```
 By default, the repository for stable nginx packages is used. If you would like to use mainline nginx packages, run the following command:
 
 sudo yum-config-manager --enable nginx-mainline
 ``` -->
 
-## 其他次安装
+## 安装 mongodb
+
+官网文档（CentOS，Red Hat 相同）：
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
+
+```shell
+vi /etc/yum.repos.d/mongodb-org-4.2.repo
+# 添加：
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
+
+# 直接安装
+yum install -y mongodb-org
+
+# 默认数据目录 /var/lib/mongo (the data directory)
+# 默认日志目录 /var/log/mongodb (the log directory)
+# 启动
+service mongod start | stop | restart
+# 开机自启
+systemctl enable mongod.service
+# 查看日志，是否正常监听
+cat /var/log/mongodb/mongod.log
+
+#启动客户端
+mongo
 
 ```
-安装 git(centos自带1.8，不用装）：
-yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel -y
-yum install gcc perl-ExtUtils-MakeMaker -y
 
-mkdir tmp
-cd /tmp
-curl -O https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.22.0.tar.gz
+### 安装 pm2
 
-tar xzf git-2.22.0.tar.gz
-cd git-2.22.0
-make prefix=/usr/local/git all
-make prefix=/usr/local/git install
-echo "export PATH=\$PATH:/usr/local/git/bin" >> /etc/bashrc
-source /etc/bashrc
+拉取启动后台项目
+
+```shell
+npm --registry https://registry.npm.taobao.org install pm2 -g
+git clone https://github.com/Rackar/node_koa
+cd ./node_koa
+npm i
+pm2 start --name node_koa ./bin/www
+pm2 logs 0
+
+
 ```
+
+### 其他系统情况的一些安装命令
 
 ```
 拉取镜像
