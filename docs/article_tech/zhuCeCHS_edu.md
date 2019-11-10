@@ -40,11 +40,15 @@ $.fn.pointsVerify = function(options, callbacks) {
 
 #### 脚本下载安装
 
-油猴插件安装好以后，点击下面两个链接下载脚本。然后点击安装
+油猴插件安装好以后，点击下面 4 个链接下载脚本。然后点击安装
 
-[列表页脚本](http://www.codingyang.com/publicjs/%E6%B3%A8%E5%86%8C%E6%B5%8B%E7%BB%98%E5%B8%88%E7%BB%A7%E7%BB%AD%E6%95%99%E8%82%B2_%E5%88%97%E8%A1%A8%E9%A1%B5.user.js)
+[必修列表页脚本](https://github.com/Rackar/myTamperMonkeyLibs/raw/master/bixiu_list.user.js)
 
-[视频页脚本](http://www.codingyang.com/publicjs/%E6%B3%A8%E5%86%8C%E6%B5%8B%E7%BB%98%E5%B8%88%E7%BB%A7%E7%BB%AD%E6%95%99%E8%82%B2_%E8%A7%86%E9%A2%91%E9%A1%B5.user.js)
+[必修视频页脚本](https://github.com/Rackar/myTamperMonkeyLibs/raw/master/bixiu_video.user.js)
+
+[选修列表页脚本](https://github.com/Rackar/myTamperMonkeyLibs/raw/master/xuanxiu_list.user.js)
+
+[选修视频页脚本](https://github.com/Rackar/myTamperMonkeyLibs/raw/master/xuanxiu_video.user.js)
 
 ![安装](../pic/install.jpg)
 
