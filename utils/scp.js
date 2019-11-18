@@ -1,17 +1,17 @@
 let client = require("scp2");
-let {secret} = require("./secret");
+let { secret } = require("./secret");
 
 //
 // secret.js 格式
 //
-// const config = {
+// const secret = {
 //   host: "xx.xxx.xxx.xx",
 //   username: "root",
 //   password: "password",
 //   path: "/root/myapp/www/"
 // };
 //
-// exports.config = config;
+// exports.secret = secret;
 //
 
 //scp覆盖上传整个目录

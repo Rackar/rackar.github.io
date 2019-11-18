@@ -8,7 +8,7 @@
 
 #### 地址
 
-点击进入[航测参数计算工具](http://www.codingyang.com/calc/)
+点击进入[航测参数计算工具](http://www.codingyang.com/tools/#/calc/)
 
 ## 航空影像统计树木数量
 
