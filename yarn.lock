@@ -3651,7 +3651,7 @@ http-proxy-middleware@0.19.1:
   dependencies:
     http-proxy "^1.17.0"
     is-glob "^4.0.0"
-    lodash "^4.17.11"
+    lodash "^4.17.13"
     micromatch "^3.1.10"
 
 http-proxy@^1.17.0:
@@ -4263,7 +4263,7 @@ last-call-webpack-plugin@^3.0.0:
   resolved "https://registry.npmjs.org/last-call-webpack-plugin/-/last-call-webpack-plugin-3.0.0.tgz#9742df0e10e3cf46e5c0381c2de90d3a7a2d7555"
   integrity sha512-7KI2l2GIZa9p2spzPIVZBYyNKkN+e/SQPpnjlTiPhdbDW3F86tdKKELxKpzJ5sgU19wQWsACULZmpTPYHeWO5w==
   dependencies:
-    lodash "^4.17.5"
+    lodash "^4.17.13"
     webpack-sources "^1.1.0"
 
 lcid@^1.0.0:
@@ -4295,7 +4295,7 @@ leancloud-realtime@^5.0.0-alpha.3:
     debug "^3.1.0"
     eventemitter3 "^3.0.0"
     javascript-state-machine "^2.3.5"
-    lodash "^4.17.10"
+    lodash "^4.17.13"
     protobufjs "^5.0.1"
     superagent "^4.1.0"
     uuid "^3.0.0"
@@ -6302,7 +6302,7 @@ scp2@^0.5.0:
   dependencies:
     async "~0.9.0"
     glob "~7.0.3"
-    lodash "~4.11.1"
+    lodash "~4.17.13"
     ssh2 "~0.4.10"
 
 section-matter@^1.0.0:
@@ -7388,7 +7388,7 @@ vuepress-html-webpack-plugin@^3.2.0:
   dependencies:
     html-minifier "^3.2.3"
     loader-utils "^0.2.16"
-    lodash "^4.17.3"
+    lodash "^4.17.13"
     pretty-error "^2.0.2"
     tapable "^1.0.0"
     toposort "^1.0.0"
