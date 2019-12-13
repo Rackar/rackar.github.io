@@ -33,6 +33,7 @@ module.exports = {
         ariaLabel: "其他技术博客",
         items: [
           { text: "联系我", link: "/about/" },
+          { text: "友情链接", link: "/about/friend" },
           { text: "CSDN", link: "https://blog.csdn.net/henjuewang" },
           { text: "简书", link: "https://www.jianshu.com/u/2d95604f4b82" },
           { text: "微博", link: "https://weibo.com/u/1828163444" },
@@ -51,14 +52,12 @@ module.exports = {
     "/": {
       lang: "zh-CN", // 将会被设置为 <html> 的 lang 属性
       title: "CodingYang 博客",
-      description:
-        "博客文章列表，包括儿童编程、儿童教育及程序开发、个人感悟等主题 "
+      description: "博客文章列表，包括儿童编程、儿童教育及程序开发、个人感悟等主题 "
     },
     "/en/": {
       lang: "en-US",
       title: "CodingYang BLOG",
-      description:
-        "children's programming, children's education and program development"
+      description: "children's programming, children's education and program development"
     }
   },
   plugins: [

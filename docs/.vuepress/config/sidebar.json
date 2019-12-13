@@ -7,6 +7,7 @@
   ],
   "/article_tech/": [
     "",
+    "apollo",
     "gitHelp",
     "koa",
     "mongoStart",
@@ -37,9 +38,15 @@
     "other"
   ],
   "/about/": [
-    ""
+    "",
+    "friend"
   ],
   "/": [
     ""
+  ],
+  "/shiyan/": [
+    "first",
+    "middle",
+    "second"
   ]
 }
