@@ -388,3 +388,167 @@ docker ps
 curl -L https://get.daocloud.io/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
+
+## CentOS 基本环境
+
+首先得有一个生产服务器。阿里云和腾讯云入门级的云服务器大约几百元一年，再加上一个几十元一年的的域名，就可以让我们的前后端和数据库运行起来了。
+
+#### 域名解析和备案
+
+域名解析就是将你的域名绑定到服务器的 IP 地址上去，访问域名等同于访问你的服务器 IP。国内政策要求提供网站服务必须绑定域名、域名必须备案才能提供解析和绑定服务，但是基本你买一年以上的域名和服务器的话，云服务商都会免费帮助你备案。
+
+备案主要是填写上传一大堆个人或者企业信息和资料，并在特定幕布下拍照。由于备案期间域名不能提供解析而备案周期较长，所以选择买好域名以后就抓紧时间去备案吧。当然网站如果提供违规内容，会被请喝茶哦，如果涉及违法真的会被抓，请务必小心勿越界。
+
+#### 云服务器系统安装
+
+实验楼环境使用的 Linux 版本为 Ubantu，自建服务器无需图形界面，还是推荐安装 CentOS。
+
+从一个空白服务器起步，我们之前用的各个工具就要手动安装了。这里简要的列一下截止 2019 年底的安装方法，如果工具推出新的版本，推荐去官网查看新版的安装办法，各工具官网会在相关章节开头给出。
+
+### 包管理器和默认工具
+
+RedHad 与 CentOS 一般使用 `yum` 为包管理器，Ubantu 系统 使用`apt-get` 为包管理器。
+
+检查服务器上有没有默认安装好 wget 和 tar。没有的话输入下面命令安装：
+
+```sh
+sudo yum -y install wget
+sudo yum -y install  tar
+```
+
+### 安装 node 和 npm
+
+[官网文档](https://github.com/nodejs/help/wiki/Installation#how-to-install-nodejs-via-binary-archive-on-linux)
+
+用 Node.js 官网的 12.13 版本下载安装。
+
+首先创建临时文件夹并下载文件包：
+
+```sh
+mkdir tmp && cd ./tmp
+wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+```
+
+然后创建目标目录，并解压过去：
+
+```sh
+mkdir -p /usr/local/lib/nodejs
+tar -xJvf node-v12.13.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
+```
+
+最后创建全局命令，这里有两种方式。推荐第一种。
+
+```sh
+# 1. 将目录写入环境变量并更新：
+echo "export PATH=/usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin:$PATH" > /etc/profile.d/node.sh
+source /etc/profile
+```
+
+```sh
+# or 2. 创建全局软链接（不推荐）：
+sudo ln -s /usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin/node /usr/bin/node
+sudo ln -s /usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin/npm /usr/bin/npm
+sudo ln -s /usr/local/lib/nodejs/node-v12.13.0-linux-x64/bin/npx /usr/bin/npx
+```
+
+安装完成后运行 `node -v && npm -v && npx -v` 查看版本号，安装成功。
+
+### 安装 git
+
+[官网文档](https://git-scm.com/download/linux)
+
+```s
+# 检查有没有安装 git
+git --version
+
+# 安装 git 默认是 1.8.0
+yum install git
+
+# 设置 git 用户和邮箱，替换成自己的
+git config --global user.name "myname"
+git config --global user.email "xxx@qq.com"
+```
+
+### 安装 nginx
+
+[官网文档](http://nginx.org/en/linux_packages.html)
+
+```s
+yum install yum-utils -y
+vi /etc/yum.repos.d/nginx.repo
+
+#  添加下面的文本后保存退出：
+[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+
+yum install nginx -y
+```
+
+### MongoDB
+
+[官网文档（CentOS、Red Hat 版本）](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/)
+
+安装方法参考下面。使用了 vi 文本编辑器，注意进入后点击 Insert 键进入编辑模式，Esc 键退出编辑模式进入命令模式，输入命令`:wq`保存退出。
+
+```s
+vi /etc/yum.repos.d/mongodb-org-4.2.repo
+
+# 添加下面的文本后保存退出：
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
+
+# 开始安装
+yum install -y mongodb-org
+
+# 默认数据目录 /var/lib/mongo (the data directory)
+# 默认日志目录 /var/log/mongodb (the log directory)
+# 启动命令
+service mongod start | stop | restart
+
+# 开机自启命令
+systemctl enable mongod.service
+# 查看日志，是否正常监听
+cat /var/log/mongodb/mongod.log
+
+#启动客户端
+mongo
+```
+
+### 安装 pm2
+
+> PM2 是 node 进程管理工具，可以利用它来简化很多 Node.js 应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。
+
+我们执行`npm i pm2 -g`来安装。`-g`为全局安装参数，不会安装在当前目录的 node_modules 下，而是安装在任意路径都可执行的工具库。
+
+附上一些常用命令。详细用法参考 [pm2 官网文档](https://pm2.keymetrics.io/docs/usage/quick-start/)
+
+```s
+pm2 start ./back/index.js --name api  # 启动应用程序并命名为 "api"
+pm2 start ./back/index.js  --watch # 有代码变动自动重启
+pm2 start ./back/index.js  -i 3 # 同时启动 3 个实例，负载均衡。或者 -i max
+
+pm2 ls # 查看程序列表
+pm2 logs api          # 显示指定应用程序的日志
+pm2 restart api       # 重启
+pm2 stop api
+pm2 delete api
+
+# api 为程序名称，也可以用 pm2 ls 中显示的序号。或者 all 全部
+```
