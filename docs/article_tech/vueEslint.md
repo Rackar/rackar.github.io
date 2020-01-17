@@ -2,7 +2,124 @@
 
 VS code 中装了插件 prettier，vue/cli 运行时会 lint，vs code 中的自动 format 格式和 yarn lint 的警告及自动 fix 又不一致。简直搞得崩溃。彻底找一下原因和解决方案。
 
-## 项目设置
+## 新版方法更新
+
+2020-01-17 又碰到这个问题了，再来尝试一遍。VS Code 版本 1.41.1。
+
+清除掉 VS Code 用户设置 `setting.json` 中有关 format 和 prettier 和 eslint 的设置，写入如下设置文件：
+
+```js
+    // 是否开启eslint检测
+    "eslint.enable": true,
+
+    // eslint配置文件
+    "eslint.options": {
+        "extensions": [
+            ".js",
+            ".vue",
+            ".html"
+        ]
+    },
+    // eslint能够识别的文件后缀类型
+    "eslint.validate": [
+        "javascript",
+        "html",
+        "vue"
+    ],
+    // 文件保存时是否根据eslint进行格式化
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    //默认格式化使用prettier插件，并排除这三种格式
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "prettier.disableLanguages": [
+        "vue",
+        "javascript",
+        "html"
+    ],
+```
+
+这下`.eslintrc.js`中的规则可以自动生效并格式化了。其他语言使用 prettier。
+
+给一个我用到的规则示例：
+
+```js
+module.exports = {
+  root: true,
+  env: {
+    node: true
+  },
+  extends: ["plugin:vue/strongly-recommended", "@vue/standard"],
+  rules: {
+    "no-console": "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+    "generator-star-spacing": "off",
+    "no-mixed-operators": 0,
+    "vue/max-attributes-per-line": [
+      2,
+      {
+        singleline: 5,
+        multiline: {
+          max: 1,
+          allowFirstLine: false
+        }
+      }
+    ],
+    "vue/attribute-hyphenation": 0,
+    "vue/html-self-closing": 0,
+    "vue/component-name-in-template-casing": 0,
+    "vue/html-closing-bracket-spacing": 0,
+    "vue/singleline-html-element-content-newline": 0,
+    "vue/no-unused-components": 0,
+    "vue/multiline-html-element-content-newline": 0,
+    "vue/no-use-v-if-with-v-for": 0,
+    "vue/html-closing-bracket-newline": 0,
+    "vue/no-parsing-error": 0,
+    "no-tabs": 0,
+    quotes: [
+      2,
+      "single",
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true
+      }
+    ],
+    semi: [
+      2,
+      "never",
+      {
+        beforeStatementContinuationChars: "never"
+      }
+    ],
+    "no-delete-var": 2,
+    "prefer-const": [
+      2,
+      {
+        ignoreReadBeforeAssign: false
+      }
+    ]
+  },
+  parserOptions: {
+    parser: "babel-eslint"
+  },
+  overrides: [
+    {
+      files: [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ]
+};
+```
+
+## 旧版
+
+### 项目设置
 
 干脆重装@vue/cli（4.0.5），整个使用推荐插件和配置，看看到底是冲突在哪里。
 `vue create demo`
@@ -57,7 +174,7 @@ VS code 中装了插件 prettier，vue/cli 运行时会 lint，vs code 中的自
 ? Save this as a preset for future projects? (y/N) n
 ```
 
-## 安装之后的 Package.json
+### 安装之后的 Package.json
 
 ```json
 "devDependencies": {
@@ -85,7 +202,7 @@ VS code 中装了插件 prettier，vue/cli 运行时会 lint，vs code 中的自
 
 这么多 eslint 和 prettier 相关的，我已晕，只能保佑后面顺利了。
 
-## Prettier 设置
+### Prettier 设置
 
 根目录下添加文件 `.prettierrc.json`
 
@@ -99,7 +216,7 @@ VS code 中装了插件 prettier，vue/cli 运行时会 lint，vs code 中的自
 }
 ```
 
-## eslint 设置
+### eslint 设置
 
 根目录下添加文件 `.eslintrc.js`
 
@@ -111,12 +228,12 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ['plugin:vue/essential', '@vue/prettier', '@vue/typescript'],
+  extends: ["plugin:vue/essential", "@vue/prettier", "@vue/typescript"],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'prettier/prettier': [
-      'error',
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+    "prettier/prettier": [
+      "error",
       // 如果插件配置中修改了相关选项，
       // 则必须在此添加相对应的自定义规则否则就会出现编辑器格式化后ESlint检查无法通过的情况。
       {
@@ -124,28 +241,28 @@ module.exports = {
         singleQuote: false,
         bracketSpacing: true,
         jsxBracketSameLine: true,
-        htmlWhitespaceSensitivity: 'ignore'
+        htmlWhitespaceSensitivity: "ignore"
       }
     ]
   },
   parserOptions: {
-    parser: '@typescript-eslint/parser'
+    parser: "@typescript-eslint/parser"
   },
   overrides: [
     {
       files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
       ],
       env: {
         jest: true
       }
     }
   ]
-}
+};
 ```
 
-## vs code 设置
+### vs code 设置
 
 在 vs code 首选项-设置中，查找 prettier。
 将这几项设置和上面的配置一样
@@ -161,6 +278,6 @@ jsxBracketSameLine: true,
 
 Editor: Default Formatter 改为 esbenp.prettier-vscode
 
-## 测试
+### 测试
 
 关掉 serve 重新启动，乱改代码格式然后保存之后 commit，之后运行 yarn lint。看看是否还有冲突互改格式的问题。我到这里居然就好了，祝愿你们也没问题。。

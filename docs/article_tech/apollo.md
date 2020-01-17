@@ -250,3 +250,30 @@ getLaunchesByIds({ launchIds }) {
 ```
 
 通过 id 获取数据，如果是数组，则分别调用单个 id 获取的方法。现在 rest 方式已经成功啦。
+
+user.js 在示例中已经提供了，可以先读一下。数据结构已经准备好了。
+
+然后开始添加到 server，修改 index.js
+
+```js
+const { ApolloServer } = require("apollo-server");
+const typeDefs = require("./schema");
+const { createStore } = require("./utils");
+
+const LaunchAPI = require("./datasources/launch");
+const UserAPI = require("./datasources/user");
+
+const store = createStore();
+
+const server = new ApolloServer({
+  typeDefs,
+  dataSources: () => ({
+    launchAPI: new LaunchAPI(),
+    userAPI: new UserAPI({ store })
+  })
+});
+
+server.listen().then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
+```
