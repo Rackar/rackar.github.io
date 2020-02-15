@@ -1,6 +1,7 @@
 {
   "/article_child/": [
     "",
+    "mofang",
     "rules",
     "shizi",
     "star"
@@ -8,6 +9,7 @@
   "/article_tech/": [
     "",
     "apollo",
+    "broadgame",
     "gitHelp",
     "koa",
     "mongoStart",
@@ -16,6 +18,8 @@
     "nodeStart2",
     "nodeStart3",
     "nodeTechReplaceDot",
+    "plan",
+    "shiyan",
     "sirix",
     "socketIO",
     "upload",
@@ -27,7 +31,8 @@
   ],
   "/article_self/": [
     "",
-    "first"
+    "first",
+    "jiaoyi"
   ],
   "/child/": [
     "",
