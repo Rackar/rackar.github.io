@@ -15,9 +15,11 @@ module.exports = {
           { text: "个人", link: "/article_self/" }
         ]
       },
+      { text: "Scratch国内版", link: "https://scratch.codingyang.com" },
       {
         text: "教育软件",
         items: [
+          
           { text: "识字率测试", link: "http://tools.codingyang.com/word/" },
           {
             text: "奖励记录星",
