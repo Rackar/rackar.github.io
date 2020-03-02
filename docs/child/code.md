@@ -2,9 +2,11 @@
 
 ## Scratch
 
-Scratch 儿童编程 
+Scratch 儿童编程
 
 程序部署国内地址：https://scratch.codingyang.com
+
+推荐一个国内社区，登录后有自动保存和分享，加载速度也比较快： https://www.scratch-cn.cn/
 
 ### 本地安装
 
@@ -30,34 +32,41 @@ git config --global http.lowSpeedTime 99999
 gui 版本还有以下问题：不能自动保存，角色和背景还是外网拉取速度很慢，标题栏无用按钮较多。
 
 #### 首先隐藏无用按钮
+
 `src\components\menu-bar\munu-bar.css`
 给 class `.account-info-group .menu-bar-item` 加上 `display:none;`
 
-menu-bar.jsx 530行注释掉分享按钮
+menu-bar.jsx 530 行注释掉分享按钮
+
 ```js
-this.props.showComingSoon ? [] 
-                            // (
-                            //     <MenuBarItemTooltip id="share-button">
-                            //         <ShareButton className={styles.menuBarButton} />
-                            //     </MenuBarItemTooltip>
-                            // )
-                                :[]
+this.props.showComingSoon
+  ? []
+  : // (
+    //     <MenuBarItemTooltip id="share-button">
+    //         <ShareButton className={styles.menuBarButton} />
+    //     </MenuBarItemTooltip>
+    // )
+    [];
 ```
+
 以及紧接着的下面的社交按钮：
+
 ```js
 <MenuBarItemTooltip id="community-button">
-    <CommunityButton className={styles.menuBarButton} />
+  <CommunityButton className={styles.menuBarButton} />
 </MenuBarItemTooltip>
 ```
 
-修改logo的点击跳转在render-gui.jsx中
+修改 logo 的点击跳转在 render-gui.jsx 中
+
 ```js
 const onClickLogo = () => {
-    window.location = 'https://scratch.mit.edu';
+  window.location = "https://scratch.mit.edu";
 };
 ```
 
-然后在489行增加一条提示说明：
+然后在 489 行增加一条提示说明：
+
 ```
 <Divider className={classNames(styles.divider)} />
                     <div
@@ -67,22 +76,27 @@ const onClickLogo = () => {
                     </div>
 ```
 
-图片cdn地址在：
+图片 cdn 地址在：
 `scratch-gui\src\containers\library-item.jsx`
-中第109行。
+中第 109 行。
+
 ```js
-        const iconURL = iconMd5 ?
-            `https://cdn.assets.scratch.mit.edu/internalapi/asset/${iconMd5}/get/` :
-            this.props.iconRawURL;
+const iconURL = iconMd5
+  ? `https://cdn.assets.scratch.mit.edu/internalapi/asset/${iconMd5}/get/`
+  : this.props.iconRawURL;
 ```
 
-通过md5文件名拼接url模板。
+通过 md5 文件名拼接 url 模板。
 
-MD5信息如角色和背景等数据信息是离线json，分别在
+MD5 信息如角色和背景等数据信息是离线 json，分别在
 
-`src\lib\libraries\sprites.json` 和同级目录下的其他json
+`src\lib\libraries\sprites.json` 和同级目录下的其他 json
 
 下一步抓取所有数据做国内存储，解决访问缓慢。
+
+lib 下 save-project-to-server 和 project-fetcher-hoc 中设置 ProjectFetcherComponent.defaultProps
+
+可以修改默认的请求地址。
 
 ## SWIFT
 
