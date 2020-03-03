@@ -7,18 +7,33 @@ var baidu = `<script>
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
       })();
-      </script>`
+      </script>
+      <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+      `
 
 function writeJson() {
   //现将json文件读出来
-  fs.readFile('./docs/.vuepress/dist/index.html', function(err, data) {
+  fs.readFile('./docs/.vuepress/dist/index.html', function (err, data) {
     if (err) {
       return console.error(err)
     }
     var person = data.toString() //将二进制的数据转换为字符串
     var pos = person.indexOf('<meta charset="utf-8">')
     person = person.slice(0, pos) + baidu + person.slice(pos)
-    fs.writeFile('./docs/.vuepress/dist/index.html', person, function(err) {
+    fs.writeFile('./docs/.vuepress/dist/index.html', person, function (err) {
       if (err) {
         console.error(err)
       }

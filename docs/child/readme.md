@@ -10,7 +10,7 @@
 
 #### 地址
 
-点击进入[识字率测试](http://tools.codingyang.com/word/)
+点击进入[识字率测试](http://tools.codingyang.com/word)
 
 ## 奖励记录星
 
@@ -21,4 +21,4 @@
 
 #### 地址
 
-点击进入[奖励记录星](http://tools.codingyang.com/stars/)
+点击进入[奖励记录星](http://tools.codingyang.com/stars)

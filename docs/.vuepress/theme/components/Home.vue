@@ -11,10 +11,9 @@
         <NavLink class="action-button" :item="actionLink" />
       </p>
     </header>
-    <a :href="$withBase('/article_tech/shiyan')">
-          <h2> 教你从零开发内容发布系统 </h2>
-          
-        </a>
+    <a :href="$withBase('/article_tech/shiyan.html')">
+      <h4>教你从零开发内容发布系统</h4>
+    </a>
     <div class="features" v-if="data.features && data.features.length">
       <div class="feature" v-for="(feature, index) in data.features" :key="index">
         <a :href="$withBase(feature.url)">

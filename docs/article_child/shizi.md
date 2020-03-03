@@ -10,7 +10,7 @@
 
 ## 地址
 
-[识字率测试](http://tools.codingyang.com/word/)
+[识字率测试](http://tools.codingyang.com/word)
 
 ## 其他
 
