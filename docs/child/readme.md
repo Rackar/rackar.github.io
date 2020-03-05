@@ -21,4 +21,4 @@
 
 #### 地址
 
-点击进入[奖励记录星](http://tools.codingyang.com/stars)
+点击进入[奖励记录星](https://tools.codingyang.com/star)

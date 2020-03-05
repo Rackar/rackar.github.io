@@ -20,10 +20,10 @@ module.exports = {
         text: "教育软件",
         items: [
 
-          { text: "识字率测试", link: "http://tools.codingyang.com/word" },
+          { text: "识字率测试", link: "https://tools.codingyang.com/word" },
           {
             text: "奖励记录星",
-            link: "http://tools.codingyang.com/stars"
+            link: "https://tools.codingyang.com/star"
           },
 
           { text: "相关介绍", link: "/child/" }
