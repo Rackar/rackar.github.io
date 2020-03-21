@@ -30,6 +30,7 @@ module.exports = {
         ]
       },
       { text: "其他程序", link: "/code/" },
+      { text: "阿里云1折", link: "https://www.aliyun.com/minisite/goods?userCode=ha4o8twr" },
       {
         text: "联系我",
         ariaLabel: "其他技术博客",
