@@ -1,6 +1,6 @@
 module.exports = {
-  "title": "codingyang",
-  "description": "blog",
+  "title": "CodingYang",
+  "description": "Blog",
   "dest": "public",
   "head": [
     [
@@ -22,47 +22,52 @@ module.exports = {
   "themeConfig": {
     "nav": [
       {
-        "text": "Home",
+        "text": "首页",
         "link": "/",
         "icon": "reco-home"
       },
       {
-        "text": "TimeLine",
+        "text": "时间线",
         "link": "/timeline/",
         "icon": "reco-date"
       },
       {
-        "text": "Contact",
+        "text": "阿里云1折",
+        "link": "https://www.aliyun.com/minisite/goods?userCode=ha4o8twr"
+      },
+      {
+        "text": "联系",
         "icon": "reco-message",
         "items": [
+          //         { text: "联系我", link: "/about/" },
+          //         { text: "友情链接", link: "/about/friend" },
+          //         { text: "CSDN", link: "https://blog.csdn.net/henjuewang" },
+          //         { text: "简书", link: "https://www.jianshu.com/u/2d95604f4b82" },
+          //         { text: "微博", link: "https://weibo.com/u/1828163444" },
+          //         { text: "github", link: "https://github.com/rackar" },
+          //         { text: "码云", link: "https://gitee.com/rackar" }
           {
-            "text": "NPM",
-            "link": "https://www.npmjs.com/~reco_luan",
-            "icon": "reco-npm"
+            text: "关于", link: "/about/"
           },
           {
             "text": "GitHub",
-            "link": "https://github.com/recoluan",
+            "link": "https://github.com/rackar",
             "icon": "reco-github"
           },
           {
             "text": "简书",
-            "link": "https://www.jianshu.com/u/cd674a19515e",
+            "link": "https://www.jianshu.com/u/2d95604f4b82",
             "icon": "reco-jianshu"
           },
           {
             "text": "CSDN",
-            "link": "https://blog.csdn.net/recoluan",
+            "link": "https://blog.csdn.net/henjuewang",
             "icon": "reco-csdn"
           },
-          {
-            "text": "博客圆",
-            "link": "https://www.cnblogs.com/luanhewei/",
-            "icon": "reco-bokeyuan"
-          },
+
           {
             "text": "WeChat",
-            "link": "https://mp.weixin.qq.com/s/mXFqeUTegdvPliXknAAG_A",
+            "link": "https://mp.weixin.qq.com/s/-MJyE7Y7ixpm3gY1ZOcTIw",
             "icon": "reco-wechat"
           }
         ]
@@ -72,11 +77,11 @@ module.exports = {
     "blogConfig": {
       "category": {
         "location": 2,
-        "text": "Category"
+        "text": "类别"
       },
       "tag": {
         "location": 3,
-        "text": "Tag"
+        "text": "标签"
       }
     },
     "friendLink": [
@@ -91,17 +96,22 @@ module.exports = {
         "desc": "A simple and beautiful vuepress Blog & Doc theme.",
         "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
         "link": "https://vuepress-theme-reco.recoluan.com"
-      }
+      },
+      {
+        "title": "邪少博客",
+        "desc": "前端技术",
+        "link": "//itwmw.com"
+      },
     ],
     "logo": "/logo.png",
     "search": true,
     "searchMaxSuggestions": 10,
     "sidebar": "auto",
-    "lastUpdated": "Last Updated",
-    "author": "rackar",
+    "lastUpdated": "更新于",
+    "author": "Rackar",
     "authorAvatar": "/avatar.png",
-    "record": "xxxx",
-    "startYear": "2017"
+    "record": "蒙ICP备19000275号-1",
+    "startYear": "2018"
   },
   "markdown": {
     "lineNumbers": true
