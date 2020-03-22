@@ -11,12 +11,23 @@
 title: Node 爬虫编写
 date: 2019-05-18
 tags:
-  - 教程
   - Node.js
 categories:
   - 技术
 ---
+这里的内容会被显示成摘要。
 
+1. 可以放置文案；
+2. 可以放置图片作为文章封面。
+
+<!-- more -->
+```
+
+```s
+tags:
+工具 陪娃 育娃软件 市场经济 公众号文章 数据库 Node.js Vue.js PostgREST Linux 测绘小程序
+categories:
+技术 儿童 个人 思考
 ```
 
 2. 评论使用 Valine

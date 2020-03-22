@@ -2,8 +2,7 @@
 title: 手把手 Koa2 开发 REST Api
 date: 2020-01-07
 tags:
-  - 教程
-  - 后端
+  - Node.js
 categories:
   - 技术
 ---

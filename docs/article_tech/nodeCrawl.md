@@ -2,7 +2,6 @@
 title: Node 爬虫编写
 date: 2019-10-18
 tags:
-  - 教程
   - Node.js
 categories:
   - 技术

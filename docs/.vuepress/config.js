@@ -126,5 +126,12 @@ module.exports = {
   },
   "markdown": {
     "lineNumbers": true
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@pic': 'docs/pic'
+      }
+    }
   }
 }

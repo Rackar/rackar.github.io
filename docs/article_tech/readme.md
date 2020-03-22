@@ -2,7 +2,7 @@
 title: Codingyang Blog 静态博客
 date: 2019-11-01
 tags:
-  - vuepress
+  - Vue.js
 categories:
   - 技术
 ---
@@ -20,7 +20,6 @@ categories:
 title: Node 爬虫编写
 date: 2019-05-18
 tags:
-  - 教程
   - Node.js
 categories:
   - 技术

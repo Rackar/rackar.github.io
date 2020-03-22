@@ -2,7 +2,7 @@
 title: 去掉 js 对象键中包含的点
 date: 2019-10-20
 tags:
-  - 代码块
+  - Node.js
 categories:
   - 技术
 ---

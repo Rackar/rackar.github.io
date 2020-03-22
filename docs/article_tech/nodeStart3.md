@@ -2,10 +2,8 @@
 title: 从零开始全栈开发(3)前端
 date: 2019-08-27
 tags:
-  - 教程
   - Node.js
   - Vue.js
-  - 全栈
 categories:
   - 技术
 ---

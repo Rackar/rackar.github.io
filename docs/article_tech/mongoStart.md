@@ -2,7 +2,6 @@
 title: MongoDB 环境搭建
 date: 2019-12-12
 tags:
-  - 教程
   - 数据库
 categories:
   - 技术

@@ -2,8 +2,10 @@
 title: Postgrest 完整示例教程
 date: 2020-03-22
 tags:
-  - postgrest
-  - 全栈
+  - PostgREST
+  - Vue.js
+  - Linux
+  - 数据库
 categories:
   - 技术
 ---

@@ -2,7 +2,6 @@
 title: Vue 自动 lint 格式化
 date: 2019-12-13
 tags:
-  - 教程
   - 工具
 categories:
   - 技术

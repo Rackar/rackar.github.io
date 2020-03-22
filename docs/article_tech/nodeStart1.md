@@ -2,10 +2,8 @@
 title: 从零开始全栈开发(1)基础
 date: 2019-08-10
 tags:
-  - 教程
   - Node.js
   - Vue.js
-  - 全栈
 categories:
   - 技术
 ---

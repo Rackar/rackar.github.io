@@ -2,8 +2,7 @@
 title: node 服务器图片上传失败
 date: 2019-11-05
 tags:
-  - 代码块
-  - 全栈
+  - Node.js
 categories:
   - 技术
 ---
