@@ -16,7 +16,7 @@ let { secret } = require("./secret");
 
 //scp覆盖上传整个目录
 client.scp(
-  "docs/.vuepress/dist/",
+  "public/",
   // "2.txt",
   {
     host: secret.host,
@@ -24,7 +24,7 @@ client.scp(
     password: secret.password,
     path: secret.path
   },
-  function(err) {
+  function (err) {
     if (err) {
       console.log(err);
     } else {
