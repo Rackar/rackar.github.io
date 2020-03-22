@@ -115,7 +115,14 @@ module.exports = {
     "author": "Rackar",
     "authorAvatar": "/logo.png",
     "record": "蒙ICP备19000275号-1",
-    "startYear": "2018"
+    "startYear": "2018",
+    repo: 'Rackar/rackar.github.io',
+    // // 假如文档不是放在仓库的根目录下：
+    docsDir: 'docs',
+    // // 假如文档放在一个特定的分支下：
+    docsBranch: 'blog',
+    editLinks: true,
+    editLinkText: '参与编辑此文章',
   },
   "markdown": {
     "lineNumbers": true
