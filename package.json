@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "author": "reco_luan",
   "scripts": {
+    "autopush": "vuepress build docs && node utils/bd_hm.js && node ./utils/scp.js",
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs && node utils/bd_hm.js"
   },
   "devDependencies": {
     "vuepress": "1.3.1",
