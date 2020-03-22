@@ -1,11 +1,12 @@
 {
-  "name": "codingyang-reco",
+  "name": "codingyang-blog",
   "version": "1.0.0",
-  "author": "reco_luan",
+  "author": "Rackar",
   "scripts": {
     "autopush": "vuepress build docs && node utils/bd_hm.js && node ./utils/scp.js",
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs && node utils/bd_hm.js"
+    "build": "vuepress build docs && node utils/bd_hm.js",
+    "buildSubpath": "export VUEPRESS_BASE=/codingyang/ || set VUEPRESS_BASE=/codingyang/ && vuepress build docs && node utils/bd_hm.js"
   },
   "devDependencies": {
     "scp2": "^0.5.0",

@@ -113,7 +113,7 @@ module.exports = {
     "sidebar": "auto",
     "lastUpdated": "更新于",
     "author": "Rackar",
-    "authorAvatar": "/avatar.png",
+    "authorAvatar": "/logo.png",
     "record": "蒙ICP备19000275号-1",
     "startYear": "2018"
   },
