@@ -1,7 +1,7 @@
 ---
 title: CentOS nginx 服务器起步
 
-date: 2019-11-7
+date: 2019-11-07
 tags:
   - Linux
 categories:

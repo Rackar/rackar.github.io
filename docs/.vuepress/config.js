@@ -1,6 +1,6 @@
 module.exports = {
   "title": "CodingYang",
-  "description": "Blog",
+  "description": "个人博客",
   "dest": "public",
   "head": [
     [
@@ -20,6 +20,10 @@ module.exports = {
   ],
   "theme": "reco",
   "themeConfig": {
+    valineConfig: {
+      appId: 'qIMtTW8cOnc4Wyzsw5du5kCY-gzGzoHsz',// your appId
+      appKey: 'f56GWCRncDeNHhggfNo52UTm', // your appKey
+    },
     "nav": [
       {
         "text": "首页",

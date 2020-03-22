@@ -1,7 +1,7 @@
 ---
 title: 两个办公和学习的脚本
 
-date: 2019-9-15
+date: 2019-09-15
 tags:
   - 工具
 categories:

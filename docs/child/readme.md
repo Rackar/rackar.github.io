@@ -1,6 +1,6 @@
 ---
 title: 几个育娃过程中编写的小工具
-date: 2020-1-6
+date: 2020-01-06
 tags:
   - 育娃软件
 categories:

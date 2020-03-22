@@ -1,6 +1,6 @@
 ---
 title: 联系方式
-date: 2019-10-2
+date: 2019-10-02
 categories:
   - 个人
 ---

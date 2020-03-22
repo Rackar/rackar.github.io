@@ -1,6 +1,6 @@
 ---
 title: git 基础教程
-date: 2020-1-3
+date: 2020-01-03
 tags:
   - 工具
 categories:

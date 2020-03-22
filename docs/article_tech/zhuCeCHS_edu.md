@@ -1,7 +1,7 @@
 ---
 title: 视频继续教育课脚本
 
-date: 2019-10-8
+date: 2019-10-08
 tags:
   - 测绘
 categories:

@@ -9,7 +9,8 @@ home: true
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
-bgImageStyle: { height: "450px" }
+bgImageStyle: { height: "350px" }
+bgImage: /ba.png
 isShowTitleInHome: false
 actionText: Guide
 actionLink: /views/other/guide

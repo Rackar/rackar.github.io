@@ -1,6 +1,6 @@
 ---
 title: Codingyang Blog 静态博客
-date: 2019-11-1
+date: 2019-11-01
 tags:
   - vuepress
 categories:

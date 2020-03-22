@@ -1,6 +1,6 @@
 ---
 title: 让孩子自觉学习
-date: 2019-9-12
+date: 2019-09-12
 tags:
   - 育娃软件
 categories:
