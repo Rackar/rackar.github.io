@@ -133,5 +133,12 @@ module.exports = {
         '@pic': 'docs/pic'
       }
     }
-  }
+  },
+  plugins: [
+    // ['@vuepress-reco/rss', {
+    //   site_url: 'https://codingyang.com',
+    //   copyright: ''
+    // }]
+  ]
+
 }
