@@ -91,7 +91,7 @@ cd /root/postgrest
 wget https://github.com/PostgREST/postgrest/releases/download/v6.0.2/postgrest-v6.0.2-centos7.tar.xz
 
 # 或者我传的七牛云镜像，国内下载
-wget http://q6o50zwkj.bkt.clouddn.com/postgrest-v6.0.2-centos7.tar.xz
+wget http://img.codingyang.com/postgrest-v6.0.2-centos7.tar.xz
 
 # 原地解压
 tar xfJ postgrest-v6.0.2-centos7.tar.xz
