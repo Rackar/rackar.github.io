@@ -69,7 +69,7 @@ categories:
 
 绑定完成。自此可使用自己的域名，不担心失效了。
 
-对于还没有自己的域名及云服务器的同学，可以尝试一下[阿里云](https://www.aliyun.com/minisite/goods?userCode=ha4o8twr)或者[腾讯云](https://url.cn/5PS0JER)，优惠价格特别低，一年不到 200 元就可以买到云服务器和域名及免费备案，可以方便的学习研究或者制作网站应用。
+对于还没有自己的域名及云服务器的同学可以直接在七牛云购买，也可以尝试一下[阿里云](https://www.aliyun.com/minisite/goods?userCode=ha4o8twr)或者[腾讯云](https://url.cn/5PS0JER)，优惠价格特别低，一年不到 200 元就可以买到云服务器和域名及免费备案，可以方便的学习研究或者制作网站应用。
 
 ## 插件使用
 
