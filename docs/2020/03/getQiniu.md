@@ -13,9 +13,7 @@ categories:
 
 # 注册
 
-[进入官网注册页](https://portal.qiniu.com/signup)
-
-https://portal.qiniu.com/signup
+[进入官网注册页](https://portal.qiniu.com/qvm/active?code=1381743059Lfgl)
 
 填入邮箱，手机，真实姓名。因为我们要实名注册才能有免费云服务使用…… 反正国家都是这么要求，隐私不隐私早就随风去了。
 
