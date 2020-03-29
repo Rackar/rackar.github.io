@@ -40,6 +40,8 @@ git checkout fenzhi 切换到 fenzhi 分支（文件和代码同时会变化过�
 
 git merge fenzhi 将 fenzhi 分支上的代码合并回当前分支。
 
+**分支**的概念就像是备份了一份主线从此另开了一条道路，可以在不同的分支上做不同的事，不影响主线。当分支的的操作结束时，可以很轻松的将差异合并回主线。各分支之间的切换非常之快，硬盘上的文件会瞬间写回。
+
 ### 新建本人所属分支并推送到远程
 
 git checkout -b xinde //以当前分支的内容复制到新分支 xinde,并切换分支到 xinde
@@ -60,6 +62,8 @@ git remote set-url origin https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
 也可以使用双远程仓库：
 git remote add origin2 https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
 
+这里的origin其实就是远程库别名，比如设定Github和Gitee分别为远程库，方便区分国际版本和国内版本的时候，就可以推送不同的分支到不同的远程仓库。
+
 ## git rebase 使用
 
 ### 目的
@@ -70,7 +74,7 @@ git remote add origin2 https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
 
 ::: danger
 git log 和 git rebase 命令在 cmd 和 powershell 下都有问题。
-所以在 vscode 中运行时，终端改为 git bash 或者 wsl
+所以在 Windows 中运行时，终端改为 git bash 或者 wsl
 :::
 
 ### 步骤
