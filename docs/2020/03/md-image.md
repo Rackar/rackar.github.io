@@ -11,6 +11,12 @@ categories:
 
 <!-- more -->
 
+## 介绍
+
+本插件可以用四种方式上传图片到七牛云存储，并将外链图片标签写回 md 文件。方式包括本地上传，本地/远程图片路径、截图粘贴和右键菜单。
+
+还有一个设置图片在本机同目录下保存还是上传七牛云的开关。
+
 ## 安装配置插件
 
 VS Code 插件中搜索 `markdown-image` 就可以找到。点击 `Install` 安装。或者使用快捷键`Ctrl+P`，键入 `ext install markdown-image`
@@ -29,6 +35,9 @@ VS Code 插件中搜索 `markdown-image` 就可以找到。点击 `Install` 安�
 {
     // 插件开关，默认打开
     "qiniu.enable": true,
+
+    // 上传开关。如关闭则会复制图片到本机，位置为本项目中location。点击上传开关按钮会修改本值。
+    "qiniu.uploadEnable": true,
 
     // 你的七牛AK: AccessKey
     "qiniu.access_key": "*****************************************",
@@ -56,9 +65,9 @@ VS Code 插件中搜索 `markdown-image` 就可以找到。点击 `Install` 安�
 
 ## 使用方法
 
-打开 `.md` 文件后，左下角状态栏有 3 个按钮：
+打开 `.md` 文件后，左下角状态栏有 3 个按钮和一个开关。开关用于切换图片文件保存到本机路径还是上传七牛云。按钮功能如下：
 
-![1585206266465](http://img.codingyang.com/1585206266465-202032615429.png)
+![1585790341995-2020429192.png](http://img.codingyang.com/1585790341995-2020429192.png)
 
 1. **img 截图** 剪贴板内的截图上传。快捷键： `Ctrl + Alt +8`
    > 支持 qq，微信等工具的截图功能，会自动在本目录保存图片并上传云端。由于截图是保存在剪贴板，其他复制操作会覆盖截图。
@@ -72,6 +81,10 @@ VS Code 插件中搜索 `markdown-image` 就可以找到。点击 `Install` 安�
 3. **img 远程** 粘贴本地图片路径或远程图片 URL 上传。快捷键：`Ctrl + Alt +0`
 
 ![path](http://img.codingyang.com/path-202032615555.gif)
+
+4. **右键添加** 在左侧项目资源管理器中对图片文件右键，选择“将图片加入到 Markdown 文件中”。
+
+![youjian-20204292214.gif](http://img.codingyang.com/youjian-20204292214.gif)
 
 上传成功后，插件会自动返回图片外链地址，并在光标处插入图片代码。如：
 
