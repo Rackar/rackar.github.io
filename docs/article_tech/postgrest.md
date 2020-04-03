@@ -278,6 +278,18 @@ nohup ./postgrest pgrest.conf &
 # linux 杀进程：
 ps -ef | grep postgrest
 kill -s 9 12931
+
+# psql命令
+# 列出所有表
+\dt
+# 列出数据库名
+\l
+# 列出所有schema SELECT nspname FROM pg_namespace;或者：
+\dnS
+# 创建schema
+create schema schema01;
+
+
 ```
 
 ### jwt 认证系统原理
