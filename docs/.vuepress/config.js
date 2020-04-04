@@ -54,6 +54,9 @@ module.exports = {
             text: "关于", link: "/about/"
           },
           {
+            text: "RSS订阅", link: "https://codingyang.com/rss.xml", icon: 'reco-rss'
+          },
+          {
             "text": "GitHub",
             "link": "https://github.com/rackar",
             "icon": "reco-github"
@@ -139,6 +142,10 @@ module.exports = {
     //   site_url: 'https://codingyang.com',
     //   copyright: ''
     // }]
+    ['@vuepress-reco/vuepress-plugin-rss', {
+      site_url: 'https://codingyang.com',
+      copyright: 'Rackar'
+    }],
   ]
 
 }
