@@ -23,6 +23,7 @@ module.exports = {
     valineConfig: {
       appId: 'qIMtTW8cOnc4Wyzsw5du5kCY-gzGzoHsz',// your appId
       appKey: 'f56GWCRncDeNHhggfNo52UTm', // your appKey
+      placeholder: '请填写邮箱，可收到回复的提醒。'
     },
     "nav": [
       {
