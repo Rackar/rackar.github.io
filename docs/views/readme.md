@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: CodingYang博客
+heroText: CodingYang文章
 tagline: 注册测绘师 / 业余码农 / 儿童成长陪伴员
 
 features:

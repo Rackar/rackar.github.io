@@ -8,10 +8,11 @@ date: 2019-04-09
 ![valine](https://img.shields.io/badge/valine-1.3.4-blue.svg)
 
 ::: tip 介绍
-1. 这是一个vuepress主题，旨在添加博客所需的分类、TAB墙、分页、评论等能；<br>
+
+1. 这是一个 vuepress 主题，旨在添加文章所需的分类、TAB 墙、分页、评论等能；<br>
 2. 主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；<br>
 3. 你可以打开 [午后南杂](http://recoluan.gitlab.io) 来查看效果。
-:::
+   :::
 
 ## Use
 
@@ -49,9 +50,9 @@ yarn dev
 
 ### 1.x
 
-随着不断有用户过来询问：为什么 `vuepress-theme-reco@0.x` 不能在 `vuepress@1.x` 上使用？本来只是打算对 `vuepress-theme-reco@0.x` 进行简单的bug修复的我，终究还是忍不住，开始了 `vuepress-theme-reco@1.x` 的开发。又是在一个寂静的凌晨两点半（晚上就是出活快），我默默地开始了。
+随着不断有用户过来询问：为什么 `vuepress-theme-reco@0.x` 不能在 `vuepress@1.x` 上使用？本来只是打算对 `vuepress-theme-reco@0.x` 进行简单的 bug 修复的我，终究还是忍不住，开始了 `vuepress-theme-reco@1.x` 的开发。又是在一个寂静的凌晨两点半（晚上就是出活快），我默默地开始了。
 
-主题升级的关键也就是 `@vuepress/plugin-blog` 这款官方插件，它不需要再去麻烦地过滤数据，将分类和标签的相关信息直接存在 `$categories` 和 `$tags` 这两个全局变量中。借助于 `@vuepress/plugin-blog`，分类和标签功能更容易实现，但也有了一些局限。接下来两三天的时间，都是在进行功能的迁移和一些bug的修复。
+主题升级的关键也就是 `@vuepress/plugin-blog` 这款官方插件，它不需要再去麻烦地过滤数据，将分类和标签的相关信息直接存在 `$categories` 和 `$tags` 这两个全局变量中。借助于 `@vuepress/plugin-blog`，分类和标签功能更容易实现，但也有了一些局限。接下来两三天的时间，都是在进行功能的迁移和一些 bug 的修复。
 
 `vuepress-theme-reco@0.x` 的开发中，更加深刻地明白了模块化和组件化编程的重要性，如果当初没有把一些功能进行封装，而是直接简单的复制，这次升级也不会这么顺利。模块拆分的越细，使用就会越灵活。
 
@@ -60,4 +61,5 @@ yarn dev
 还是衷心地希望能有更多的朋友参与进来，更快地去完善它。接下来时间允许的情况下，我会开源一款自动生成博客的脚手架，略过配置步骤，直接书写优质内容，这也是我后来逐渐形成的一种信念，就是希望能让这款主题，功能越完善，使用越来越简单。
 
 ## License
+
 [MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)

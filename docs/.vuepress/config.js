@@ -1,6 +1,6 @@
 module.exports = {
   "title": "CodingYang",
-  "description": "个人博客",
+  "description": "个人文章",
   "dest": "public",
   "head": [
     [
@@ -35,10 +35,6 @@ module.exports = {
         "text": "时间线",
         "link": "/timeline/",
         "icon": "reco-date"
-      },
-      {
-        "text": "阿里云1折",
-        "link": "https://www.aliyun.com/minisite/goods?userCode=ha4o8twr"
       },
       {
         "text": "联系",
@@ -106,7 +102,7 @@ module.exports = {
         "link": "https://vuepress-theme-reco.recoluan.com"
       },
       {
-        "title": "邪少博客",
+        "title": "邪少",
         "desc": "前端技术",
         "link": "//itwmw.com"
       },
@@ -119,6 +115,7 @@ module.exports = {
     "author": "Rackar",
     "authorAvatar": "/logo.png",
     "record": "蒙ICP备19000275号-1",
+    recordLink: "http://beian.miit.gov.cn",
     "startYear": "2018",
     repo: 'Rackar/rackar.github.io',
     // // 假如文档不是放在仓库的根目录下：

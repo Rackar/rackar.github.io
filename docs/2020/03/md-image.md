@@ -23,7 +23,9 @@ VS Code 插件中搜索 `markdown-image` 就可以找到。点击 `Install` 安�
 
 ![](https://www.codingyang.com/assets/img/1585053722224.7c74657b.png)
 
-安装后首先配置七牛云参数，也就是上面第二篇文章中记录下来的`外链地址、AK、SK、存储名称`。
+如果需要自动上传到七牛图床做外链，按照下面的方式进行配置。否则可以跳过。
+
+首先配置七牛云参数，也就是上面第二篇文章中记录下来的`外链地址、AK、SK、存储名称`。
 
 点击文件 → 首选项 → 设置（快捷键 `Ctrl + Shift +P` open user settings），在用户页找到扩展 → qiniu configuration。
 
