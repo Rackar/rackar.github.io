@@ -62,7 +62,7 @@ git remote set-url origin https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
 也可以使用双远程仓库：
 git remote add origin2 https://git.dev.tencent.com/rackar/XXXXXXXXXXXXXX.git
 
-这里的origin其实就是远程库别名，比如设定Github和Gitee分别为远程库，方便区分国际版本和国内版本的时候，就可以推送不同的分支到不同的远程仓库。
+这里的 origin 其实就是远程库别名，比如设定 Github 和 Gitee 分别为远程库，方便区分国际版本和国内版本的时候，就可以推送不同的分支到不同的远程仓库。
 
 ## git rebase 使用
 
@@ -96,3 +96,48 @@ git log 和 git rebase 命令在 cmd 和 powershell 下都有问题。
 
    之后进入 commit 信息编辑栏，非#注释掉的行即为你的 commit -m 信息，适当删减合并。
    然后 ctrl+o 保存，回车默认文件名，ctrl+x 退出。
+
+## Git Flow 工作流
+
+以开源前端项目 dao 为例：
+
+1. 克隆本项目的 dev 分支:
+
+   `git clone -b dev https://github.com/Rackar/dao-quasar`
+
+2. fork 一份，添加自己 fork 库的远程地址，更改 Your_ID 为自己的 Github ID:
+
+   `git remote add myrepo https://github.com/Your_ID/dao-quasar`
+
+3. 从主 dev 分支拉取最新代码并新建自己的本地工作分支:
+
+   ```bash
+   # 确定在dev分支上操作
+   git checkout dev
+   git pull
+   git checkout -b myjob
+   ```
+
+4. 在 myjob 分支下进行代码编写，结束本日工作时，拉取最近主分支更改，进行冲突处理，然后推送 fork 库:
+
+   ```bash
+   git add -A
+   git commit -m "修改了xxx，添加了xxx"
+   git pull origin dev:dev
+   git merge dev
+   # 处理冲突，然后再进行commit
+   git push myrepo myjob:myjob
+   ```
+
+5. 然后到[项目页面](https://github.com/Rackar/dao-quasar)提交 PR 请求，从你 fork 的库的 myjob 分支到主库的 dev 分支。  
+   然后可以在 myjob 分支下继续开发。  
+   等待 Code review 完成并合并后，重复第 3 步-第 5 步，保持 myjob 和 dev 分支同步，尤其是**提交 PR 前**必须同步。
+
+6. 负责 code review 时，可以将新的添加代码拉取到本地合并，测试无问题后再 merge
+
+   [git 官方文档](https://help.github.com/cn/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally)
+
+   ```bash
+   git fetch origin pull/{ID}/MERGE:tempMerge
+   git checkout tempMerge
+   ```
