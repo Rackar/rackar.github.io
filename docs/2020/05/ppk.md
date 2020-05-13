@@ -5,7 +5,7 @@ tags:
   - Linux
 categories:
   - 技术
-publish: false
+# publish: false
 ---
 
 使用 putty 生成的私钥进行 SCP 部署时遇到了问题，折腾了半天发现是格式问题。记录一下。
@@ -18,11 +18,13 @@ publish: false
 
 使用的脚本地址是这个:https://github.com/garygrossgarten/github-action-scp
 
-其中涉及到要用的 host, username 都以 secrets 的形式保存在
+其中涉及到要用的 host, username 都以 secrets 变量的形式保存在:
 
 `https://github.com/用户名/项目地址/settings/secrets`
 
-这里提示 privateKey 要使用（OpenSSH format）就把我弄蒙了。
+将上面链接中的用户名和项目地址替换为自己的。然后就可以在 actions 脚本中以`${{ secrets.HOST }}`这种方式调用。
+
+脚本这里提示 privateKey 要使用（OpenSSH format）就把我弄蒙了。
 
 先测了一下 putty 存出来的私钥，以文本的形式拷贝到 secrests 中，失败；又手工按其他格式编辑了下，还是失败。
 
@@ -42,7 +44,7 @@ publish: false
 
 ![1589353534360-202051315535.png](http://img.codingyang.com/1589353534360-202051315535.png)
 
-简直叫人崩溃。所以现在两组密钥只能同时都用上啦。
+简直叫人崩溃。所以现在两组密钥同时用上了，一组登录一组部署。
 
 下面是我的部署脚本，供参考。
 
