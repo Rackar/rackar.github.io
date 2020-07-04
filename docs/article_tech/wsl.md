@@ -162,9 +162,15 @@ nginx -s reload
 
 ## 安装 node 和 npm
 
-检查有没有 wget 和 tar。用 node 官网的 12.13 版本下载安装
+更新，官网方法，使用 root 账户：
 
+```s
+curl -sL https://rpm.nodesource.com/setup_12.x | bash -
 ```
+
+或者：检查有没有 wget 和 tar。用 node 官网的 12.13 版本下载安装
+
+```s
 cd /root
 mkdir /root/tmp && cd /root/tmp
 wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
@@ -331,7 +337,7 @@ docker run -d -p 8082:80 --name nginxweb -v /home/WebManager/Nginx/www:/usr/shar
 
 docker run -d -p 8082:80 --name nginxweb -v /home/WebManager/Nginx/conf/nginx.conf:/etc/nginx/nginx.conf nginx
 
-# wsl 安装 docker
+## wsl 安装 docker
 
 ## 参考文档
 

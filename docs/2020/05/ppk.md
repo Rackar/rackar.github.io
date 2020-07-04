@@ -14,6 +14,13 @@ categories:
 
 为了方便 Putty 登录 Linux 服务器方便，使用 puttygen.exe 使用图形界面的方式保存了公钥和私钥。将公钥放到服务器上，私钥在存在本机，然后登录时在 Auth 部分写入地址，即可实现无密码登录。
 
+```sh
+cd /root/.ssh
+vi ./authorized_keys
+# 粘贴公钥进去，然后保存退出
+:wq
+```
+
 结果最近想使用 Github Action 进行网站自动部署，除了部署在 Github Pages 之外，还将编译后的成果使用 SCP 方式上传到服务器静态目录一份。本来是很简单的一个操作，但是由于没有服务器密码，只能使用私钥认证来进行 SCP，结果就遭遇了错误。
 
 使用的脚本地址是这个:https://github.com/garygrossgarten/github-action-scp
@@ -22,7 +29,13 @@ categories:
 
 `https://github.com/用户名/项目地址/settings/secrets`
 
-将上面链接中的用户名和项目地址替换为自己的。然后就可以在 actions 脚本中以`${{ secrets.HOST }}`这种方式调用。
+将上面链接中的用户名和项目地址替换为自己的。然后就可以在 actions 脚本中以
+
+```js
+${{secrets.HOST}}
+```
+
+这种方式调用。
 
 脚本这里提示 privateKey 要使用（OpenSSH format）就把我弄蒙了。
 
