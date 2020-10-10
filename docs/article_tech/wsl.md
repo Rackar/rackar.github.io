@@ -137,10 +137,11 @@ http {
 
 由于目录属于 root，nginx 没有权限访问（`sudo -u nginx stat /root/myapp/www`会报 Permission denied。用以下命令将 nginx 加入 root 组，生产模式谨慎）
 
+或者将 nginx.conf 的第一行改为 user root;
+
 ```
 gpasswd -a nginx root
 chmod g+x /root && chmod g+x /root/myapp && chmod g+x /root/myapp/www
-
 ```
 
 #### 2.报错 invalid PID number "" in "/run/nginx.pid"
@@ -166,6 +167,7 @@ nginx -s reload
 
 ```s
 curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+yum install -y nodejs
 ```
 
 或者：检查有没有 wget 和 tar。用 node 官网的 12.13 版本下载安装
