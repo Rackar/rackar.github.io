@@ -31,7 +31,9 @@ Tampermonkey（油猴）插件，可以直接在网页上运行 js 脚本，简�
 
 #### 下载
 
-地址：[百度网盘](https://pan.baidu.com/s/1ylmQULE29O8tgcxtAbDUgQ)
+[百度网盘](https://pan.baidu.com/s/1EmgXiTn6j1H7lJaBSzUr6g)
+链接： https://pan.baidu.com/s/1EmgXiTn6j1H7lJaBSzUr6g  
+提取码：274i
 
 #### 安装
 

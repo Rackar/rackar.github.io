@@ -1,5 +1,5 @@
 ---
-title: 向中医药说不
+title: 中医药的好处在哪里？
 date: 2020-07-04
 tags:
   - JavaScript
