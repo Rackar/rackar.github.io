@@ -38,10 +38,10 @@ jobs:
           privateKey: ${{ secrets.PEM }}
           # concurrency: 20
       - name: upload index.html
-              uses: garygrossgarten/github-action-scp@release
-              with:
-                local: public/temp.html
-                remote: /root/myapp/www/index.html
-                host: ${{ secrets.HOST }}
-                username: ${{ secrets.USER }}
-                privateKey: ${{ secrets.PEM }}
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: public/temp.html
+          remote: /root/myapp/www/index.html
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.PEM }}
