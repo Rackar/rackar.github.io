@@ -8,13 +8,14 @@ categories:
 publish: true
 ---
 
+
 ## 一个伤心的故事
 
 在看大圣老师的 vite 教程时，看到一个不错的正则表达式可视化工具，有好人附了链接 https://jex.im/regulex 。于是就顺路去看了下，还到 github 上看了下代码库。
 
 结果发现作者是中国人 CJex，城市显示在上海。而点进去博客，只有一行字：
 
-```
+```s
 He is dead. He hates his parents. He hates his middle school.
 ```
 
