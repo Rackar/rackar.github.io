@@ -26,12 +26,9 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: blog # The branch the action should deploy from.
-          # BRANCH: master # The branch the action should deploy to.
-          # FOLDER: public # The folder the action should deploy.
-          # BUILD_SCRIPT: npm install &&  npm run build # The build script the action should run prior to deploying.
       - name: Move index.html
         run: sudo mv public/index.html public/temp.html
-      - name: DeployToMain change pem
+      - name: DeployToMain
         uses: garygrossgarten/github-action-scp@release
         with:
           local: public

@@ -61,6 +61,8 @@ ${{secrets.HOST}}
 
 下面是我的部署脚本，供参考。
 
+脚本于2021年6月10日更新，主要是 `JamesIves/github-pages-deploy-actio` 这个脚本升级了破坏性更新，现在指定了具体版本号。
+
 ```yml
 name: Node CI
 
@@ -72,31 +74,44 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [10.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          npm install
+          npm run build
       - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          BRANCH: master # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: dev # The branch the action should deploy from.
-          BRANCH: master # The branch the action should deploy to.
-          FOLDER: dist/spa # The folder the action should deploy.
-          BUILD_SCRIPT: npm install && npm install -g @quasar/cli &&  quasar build # The build script the action should run prior to deploying.
+          BASE_BRANCH: blog # The branch the action should deploy from.
+      - name: Move index.html
+        run: sudo mv public/index.html public/temp.html
       - name: DeployToMain
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: dist/spa
-          remote: /home/ec2-user/nginx/justdao
+          local: public
+          remote: /root/myapp/www/
           # 涉及偏安全隐私的信息，不要明文暴露在此文件中，因为repo很可能是公开的，会被所有人看见
           # ${{ ... }} 会应用你在对应项目设置中，配置的对应serets的键值信息，从而保护私密信息不被看到
           host: ${{ secrets.HOST }}
+          port: ${{secrets.PORT}}
           username: ${{ secrets.USER }}
           privateKey: ${{ secrets.PEM }}
           # concurrency: 20
+      - name: upload index.html
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: public/temp.html
+          remote: /root/myapp/www/index.html
+          host: ${{ secrets.HOST }}
+          port: ${{secrets.PORT}}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.PEM }}
 ```
