@@ -2,7 +2,8 @@
 title: Docker 安装 GeoServer
 date: 2020-11-17
 tags:
-  - Linux,GIS
+  - Linux
+  - GIS
 categories:
   - 技术
 publish: true
