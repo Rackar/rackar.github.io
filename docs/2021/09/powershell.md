@@ -138,7 +138,7 @@ function Copy-SatData {
     拷贝和筛选数据.
 
 .DESCRIPTION
-    拷贝和筛选数据.
+    通过列表文件批量拷贝和筛选数据.
 
 .PARAMETER SourceDir
     待拷贝数据所在的目录.
@@ -151,6 +151,9 @@ function Copy-SatData {
 
 .EXAMPLE
      Copy-SatData -SourceDir D:/data -DesDir E:/data -List E:/list.txt
+
+.EXAMPLE
+     Copy-SatData -SourceDir D:/data -DesDir E:/data -List E:/list.txt -Folder
 
 .INPUTS
     String
@@ -169,10 +172,10 @@ function Copy-SatData {
     [string]$DesDir,
     [string]$List,
     [string[]]$Fileter,
-    [Switch]$onlyFolder
+    [Switch]$Folder #开关参数无需赋值
   )
 
-  if ($onlyFolder) {
+  if ($Folder) {
     if ($SourceDir[-1] -ne '/' -and $SourceDir[-1] -ne '\\') {
       $SourceDir += '/'
     }
@@ -201,10 +204,12 @@ function Copy-SatData {
 用法:
 
 ```ps
+#首先加载函数
 . ./myScript.ps1
-Copy-SatData -SourceDir E:\wsNodejs\image_grid\dom -DesDir E:\wsNodejs\image_grid\cp -List E:\wsNodejs\image_grid\dom\list2.txt -onlyFolder
-
-Copy-SatData -SourceDir E:\wsNodejs\image_grid\dom -DesDir E:\wsNodejs\image_grid\cp -List E:\wsNodejs\image_grid\dom\list.txt -onlyFolder
+#拷贝文件列表
+Copy-SatData -SourceDir E:\wsNodejs\image_grid\dom -DesDir E:\wsNodejs\image_grid\cp -List E:\wsNodejs\image_grid\dom\list.txt
+#拷贝文件夹列表
+Copy-SatData -SourceDir E:\wsNodejs\image_grid\dom -DesDir E:\wsNodejs\image_grid\cp -List E:\wsNodejs\image_grid\dom\list2.txt -Folder
 ```
 
 拷贝嵌套子目录下的特定文件列表，可使用通配符：  
