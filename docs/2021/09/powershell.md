@@ -261,6 +261,31 @@ cat $profile
 
 https://www.pstips.net/loading-and-processing-xml-files.html
 
+```powershell
+# $xmldata = (Get-Content .\GF1140579920190502Y.XML -encoding UTF8)
+$xmldata = [xml](Get-Content .\GF1C_PMS_E119_7_N42_4_20210519_L1A1021754946_ORTHO_MS_pix.img.xml -encoding UTF8)
+$lineage=$xmldata.metadata.Esri.DataProperties.lineage
+$projc=$lineage.Process[1]
+# 或者
+$projc=$lineage.Process | Where-Object{$_.Name -match "投影栅格"}
+$text =$projc.'#text'
+
+$string =($text -split " ")[3]
+$head ='<?xml version="1.0" encoding="UTF-8"?><PAMDataset><SRS>'
+$tail ='</SRS></PAMDataset>'
+$result = $head+$string+$tail
+
+$filename="GF2dflksjdfiosdjf"+'.xml'
+$result > $filename
+
+# xml格式读取，修改，转string，带格式保存
+$xml = New-Object xml
+$xml.PreserveWhitespace = $true
+$xml.Load($pwd.Path+'/templete.xml')
+$xml.Metadatafile.BasicDataContent.MetaDataFileName = "bbb"
+$xml.OuterXml >xxx.xml
 ```
-$xmldata = (Get-Content .\GF1140579920190502Y.XML -encoding UTF8)
-```
+
+## 参考文档
+
+[模块化官方文档](https://docs.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.1)
