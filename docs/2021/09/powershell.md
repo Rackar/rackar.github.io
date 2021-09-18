@@ -229,4 +229,68 @@ BuChong
 ZhengJing
 ```
 
+工具制作完成，每次还需要手动执行才能使用，还是把他放入全局目录，方便直接调用。
+
+## 安装脚本
+
+创建 install.ps1
+
+```
+$mpath = ($env:PSModulePath -Split ';')[0]+"/Copy-Data"
+mkdir $mpath
+cp ./CopySatData.psm1 $mpath
+```
+
+如果需要简写以方便使用，输入 sal mcp Copy-Data，这样 mcp 就是别名，可以直接用。但是下次打开 PS 又需要重新设置别名。如果需要永久修改：
+
+```
+#先创建个人配置文件
+New-Item -Type file $profile
+#写入一行命令到配置中
+Set-Content $profile 'sal mcp Copy-Data'
+#查看
+cat $profile
+```
+
+没问题的话别名配置就生效了，打开新的 PS 窗口，输入 mcp，已提示管道参数。
+
 至此制作列表文件并拷贝已完成。遍历文件的相关命令还没用上，等待进一步完善。
+
+## 编码问题导致中文乱码
+
+由于 PowerShell 默认配置 GBK 编码，所以通过 UTF-8 编码写入的脚本中的中文会成为乱码。  
+解决方法 1，修改本机 PowerShell 代码页的配置为 UTF-8。  
+解决方法 2：通过 GBK 编码打开脚本文件，保存成 GBK 编码格式。
+
+## 读写 XML
+
+https://www.pstips.net/loading-and-processing-xml-files.html
+
+```powershell
+# $xmldata = (Get-Content .\GF1140579920190502Y.XML -encoding UTF8)
+$xmldata = [xml](Get-Content .\GF1C_PMS_E119_7_N42_4_20210519_L1A1021754946_ORTHO_MS_pix.img.xml -encoding UTF8)
+$lineage=$xmldata.metadata.Esri.DataProperties.lineage
+$projc=$lineage.Process[1]
+# 或者
+$projc=$lineage.Process | Where-Object{$_.Name -match "投影栅格"}
+$text =$projc.'#text'
+
+$string =($text -split " ")[3]
+$head ='<?xml version="1.0" encoding="UTF-8"?><PAMDataset><SRS>'
+$tail ='</SRS></PAMDataset>'
+$result = $head+$string+$tail
+
+$filename="GF2dflksjdfiosdjf"+'.xml'
+$result > $filename
+
+# xml格式读取，修改，转string，带格式保存
+$xml = New-Object xml
+$xml.PreserveWhitespace = $true
+$xml.Load($pwd.Path+'/templete.xml')
+$xml.Metadatafile.BasicDataContent.MetaDataFileName = "bbb"
+$xml.OuterXml >xxx.xml
+```
+
+## 参考文档
+
+[模块化官方文档](https://docs.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.1)
