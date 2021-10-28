@@ -31,3 +31,50 @@ Nuxt 是 Vue.js 的 SSR 库。主要是保留后端服务器来辅助渲染。�
    使用@nuxt/i18n，可以从数据库获取 JSON 语种，延迟加载翻译。
 
 ## 调试
+
+`.vscode\launch.json`添加如下：
+```json
+"version": "0.2.0",
+"configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "server: nuxt",
+      "args": ["dev"],
+      "osx": {
+        "program": "${workspaceFolder}/node_modules/.bin/nuxt"
+      },
+      "linux": {
+        "program": "${workspaceFolder}/node_modules/.bin/nuxt"
+      },
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/nuxt/bin/nuxt.js"
+      }
+    },{
+      "type": "chrome",
+      "request": "launch",
+      "name": "client: chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    }
+  ],
+"compounds": [
+    {
+      "name": "fullstack: nuxt",
+      "configurations": ["server: nuxt", "client: chrome"]
+    }
+  ]
+```
+
+nuxt.config.js 中的 nuxtConfig.build 增加
+```
+build: {
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
+  }
+```
+
+然后选fullstack: nuxt进行调试，前后端的断点就都能命中了
