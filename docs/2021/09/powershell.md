@@ -271,8 +271,8 @@ $projc=$lineage.Process | Where-Object{$_.Name -match "投影栅格"}
 $text =$projc.'#text'
 
 $string =($text -split " ")[3]
-$head ='<?xml version="1.0" encoding="UTF-8"?><PAMDataset><SRS>'
-$tail ='</SRS></PAMDataset>'
+$head ='<?xml version="1.0" encoding="UTF-8"?>\r\n<PAMDataset>\r\n<SRS>\r\n'
+$tail ='\r\n</SRS>\r\n</PAMDataset>'
 $result = $head+$string+$tail
 
 $filename="GF2dflksjdfiosdjf"+'.xml'
