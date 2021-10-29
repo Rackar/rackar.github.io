@@ -173,7 +173,9 @@ Scrimba发来一个免费的CSS响应式课程[空间旅行](https://scrimba.com
     3. transition: opacity 500ms linear, transform 750ms ease-in-out; 对同一个修改生效（hover focus之类）
     4. var(--flow-space, 1rem) 可以通过添加第二个参数来给默认值。可以通过父级临时修改变量值
     5. display: grid;place-items: center; grid子元素居中。与justify-items不同点。
+- 小工具
 
+[可视化grid生成器](https://cssgrid-generator.netlify.app/)
 
 ## 最简两列自适应
 两列并一列
