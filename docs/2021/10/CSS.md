@@ -175,3 +175,21 @@ Scrimba发来一个免费的CSS响应式课程[空间旅行](https://scrimba.com
     5. display: grid;place-items: center; grid子元素居中。与justify-items不同点。
 
 
+## 最简两列自适应
+两列并一列
+
+```css
+.container{
+    width: 95%;
+    display: grid;
+    grid-gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: minmax(500px, auto);
+}
+
+@media screen and (max-width: 850px)
+.container{
+    grid-template-columns: 1fr;
+}
+
+```
