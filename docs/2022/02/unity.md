@@ -1,3 +1,16 @@
+---
+title: Unity 官方入门教程
+date: 2022-02-28
+tags:
+  - Unity
+categories:
+  - 技术
+publish: true
+---
+
+发现一个课程设置很好的Unity教程，有点初级，但是循序渐进的实例，非常有启发。Unity玩的时间也不短了，但是一做就不知道如何下手，还是需要把基础打的更扎实一点。
+
+<!-- more -->
 
 learn unity 学习路径
 https://learn.unity.com/mission/programming-basics?language=en&pathwayId=5f7e17e1edbc2a5ec21a20af
