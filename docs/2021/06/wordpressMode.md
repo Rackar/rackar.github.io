@@ -46,3 +46,40 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 ## 备份 wordpress 文件
 
 /data/www/default 全部文件拷贝
+
+
+## 宝塔面板WP迁移
+
+用了宝塔，迁移Wordpress轻松多了。如果修改了端口忘记了宝塔管理面板入口，可以ssh登陆后输入
+`sudo /etc/init.d/bt default` 查看地址和用户密码。
+
+新机器安装宝塔面板 https://www.bt.cn/ 或者使用宝塔镜像
+
+防火墙放行8888
+
+进入ip:8888默认端口，一键安装Nginx,php,mysql
+
+进入软件商店，一键部署，安装wordpress，指定域名或路径
+
+由于宝塔会添加防火墙，所以还需要放行端口:[54125]和[10044] for outline
+
+---
+### 插播腾讯云秘钥登陆
+轻量级服务器-关机   
+轻量级-秘钥-创建-已有，复制coding.pub   
+绑定秘钥-服务器   
+服务器开机   
+winscp-高级-秘钥-coding.ppk 使用root登陆
+---
+
+继续迁移
+
+旧机器 宝塔-数据库-wp-备份，新机器 导入
+
+旧机器 scp拷贝wp-content目录和wp-includes，上传新机器
+
+wp注意固定链接格式，并给宝塔添加伪静态支持：网站-站点-伪静态-选择wordpress-保存
+
+给图片上传权限 `sudo chmod -R 755 wp-content/`
+
+如果xmlrpc权限没打开，搜索教程打开wp权限 

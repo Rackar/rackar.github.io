@@ -94,3 +94,12 @@ https://developers.coinbase.com/
 时间 操作 币种 买入价 合计USD 理由
 20211029123600 买入 ENJ 2.4464 695.25 facebook改名。微博消息提示关注mana, sand, enj。得到消息时mana日涨幅39%达1.127，sand19%达1.041, ENJ 5%。对照推理 可能还有10%以上涨幅。 测试仓位约20%， 现货。
 
+
+
+## OKex 材料
+
+API中文文档（不全）
+https://www.okex.com/docs/zh
+
+英文文档： 深度
+https://www.okex.com/docs-v5/en/#rest-api-market-data-get-order-book

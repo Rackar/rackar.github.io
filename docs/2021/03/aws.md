@@ -14,15 +14,19 @@ AIM中选择CentOS 7，新建或者使用已有的公钥，下载私钥。
 
 配置弹性ip，安全组放开80,1984,8888等端口。
 
+注意登录后`sudo -s`切换到root账户。
+
 ## 安装宝塔
 
-bt.cn 按照教程安装
+https://www.bt.cn/new/download.html 按系统版本安装脚本，需要在没安装其他软件前先安宝塔。
 
-注意登录后`sudo -s`切换到root账户。
+安装成功命令行窗口会打印外网登陆地址，用户密码。
+
+登陆后绑定手机号
 
 ## 安装环境和wp
 
-安装推荐环境
+安装推荐环境LNMP(Linux/Nginx/MySQL/PHP)
 
 安装一键部署
 
@@ -32,7 +36,8 @@ bt.cn 按照教程安装
 
 ## 修改固定链接
 
-修改固定链接为year/month/day/id/ 格式。修改完后nginx会404，需要到宝塔面板-网站-站点-伪静态—规则选择wordpress
+修改固定链接为year/month/day/id/ 格式
+`/%year%/%monthnum%/%day%/%post_id%/`。修改完后nginx会404，需要到宝塔面板-网站-站点-伪静态—规则选择wordpress
 
 
 ## 安装s

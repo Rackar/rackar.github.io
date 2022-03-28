@@ -1,4 +1,12 @@
-
+---
+title: truffle 开发
+date: 2022-01-28
+tags:
+  - 区块链
+categories:
+  - 技术
+publish: false
+---
 ## truffle 开发
 
 ### 安装
