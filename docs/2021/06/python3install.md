@@ -133,7 +133,8 @@ window 用 `pip install -r requestment.txt` 后报错，模块未安装，还是
 
 代码变更时，选择连接到工目录，更新代码，更新奖项版本，停止原有服务，重新运行
 
-```
+```shell
+git pull
 docker stop ly
 docker rm ly
 docker image rm ly
