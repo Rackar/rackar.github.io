@@ -26,3 +26,26 @@ println!
 i32
 f64
 ```
+
+更换一个更牛的教程 [Rust语言圣经](https://course.rs/about-book.html)
+
+
+
+记录下学习过程
+
+```s
+rustup update # 升级rustup版本
+cargo build --release # 提高优化执行性能
+```
+
+可变变量申明
+```rust
+let mut x = 5;
+x=6;
+// 或者
+let x =5;
+let x =6;
+
+let _y=5 //申明了不想用，加下划线去警告
+
+```
