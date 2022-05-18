@@ -3,3 +3,4 @@ dist/
 secret.js
 /public/
 tempPic/
+yarn.lock
