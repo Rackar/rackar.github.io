@@ -143,3 +143,30 @@ spawn问题在新手期常会把人搞晕，我的观察是，在spawn执行spaw
 见文档 https://docs.screeps.com/simultaneous-actions.html
 
 
+### 寻路函数文档测试
+
+
+```js
+// 有3个方法
+moveTo(
+      target: RoomPosition,
+      opts?: MoveToOpts
+    )
+findPath(fromPos, toPos, [opts]) //默认忽略障碍
+
+searchPath(origin, goal, [opts])
+
+let opts={
+  costMatrix,// 地形导航代价数组
+  ignore,    // 需要忽略的位置数组，会被认为是墙
+  plainCost, // 平地区域代价 默认2
+  swampCost, // 藻泽地区代价 默认10
+  flee,      // 是否逃离 默认false
+  maxOps,    // 最大步数
+  maxCost,   // 最大路径代价
+  heuristicWeight //启发权重。1-9的权重，应用于A*算法(A-Star)。F = G + weight * H 默认值1.2
+}
+```
+[关于A*算法](https://blog.csdn.net/qq_35247337/article/details/121099995)
+
+使用flee的时候，会计算离目标距离为range远的最小代价目标点。所以必须使用`goal={pos,range}`的结构传入target
