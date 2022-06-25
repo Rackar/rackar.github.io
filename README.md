@@ -85,7 +85,7 @@ vuepress 通过一定*号称简单*的配置之后，为每一个 md 文件生�
 
 开启 page。并使用 master 分支为 Page 源地址。
 
-设置 secret。在[Settings-tTokens](https://github.com/settings/tokens)里选择第一项 repo 生成 token，复制 token 到项目 Settings-Secrets 下新建的`ACCESS_TOKEN`中
+设置 secret。在[Settings-Tokens](https://github.com/settings/tokens)里选择第一项 repo 生成 token，复制 token 到项目 Settings-Secrets 下新建的`ACCESS_TOKEN`中
 
 然后 git push 就好，CI 脚本自动发布。
 
