@@ -9,6 +9,10 @@ categories:
 publish: true
 ---
 
+UniCloud云开发做了很多套路模板和工具，可以非常快捷方便的在上面做完整应用。本文是按照视频教程和官方文档总结的开发入门教程。
+
+<!-- more -->
+
 ## Uni Cloud简介
 两三年前尝试过UniAPP开发小程序，主要使用Vue可以跨端生产各种产品，包括H5, APP, 小程序等。只不过是各种特殊情况会需要单独处理，导致混起来也难以精通理解。
 
@@ -66,9 +70,9 @@ HbuilderX中新建项目，选择starter模板，vue3，托管代码到私有仓
 
 现在可以试试回starter项目，使用test账号登陆成功。
 
-### 留言板开发流程
+## 留言板开发流程
 
-#### 一. 登陆才可以创建留言
+### 一. 登陆才可以创建留言
 1. ucenter右键新建页面。命名guestbook。ucenter.vue中找到数组合适位置，复制一个跳转元素并粘贴guestbook地址。可以修改icon为chat。
 2. 取消页面的登录跳转。starter.config中添加白名单
 3. 首先在uniCloud/database右键新建DB Schema，添加guestbook数据表schema，添加字段text,state,user_id。保存后右键上传，创建表。在uniCloud目录右键第三项打开web控制台，可以看到云数据库中已经有本表名。
@@ -85,7 +89,7 @@ HbuilderX中新建项目，选择starter模板，vue3，托管代码到私有仓
     由于默认DB schema中权限为全禁止，修改permission create: auth.uid!=null, 即登陆用户才可创建。
 
     登陆后点击添加，刷新web控制台guestbook表，看到提交的数据。
-#### 二. 新留言需要审核才能展示
+### 二. 新留言需要审核才能展示 
 
 1. DB Schema设置强制默认值。这样传true报错，不会存入数据。
     ```js
@@ -142,12 +146,12 @@ HbuilderX中新建项目，选择starter模板，vue3，托管代码到私有仓
     </view>
     ```
 
-#### 三. 本人可看到本人发表的未审核留言
+### 三. 本人可看到本人发表的未审核留言
 
 1. 修改DBS。可查本人所有留言包括未过审
 `"read": "doc.state==true || doc.user_id==auth.uid"`
 
-2. 修改前端查询。这里由于联表了，所以是`user_id._id`,视频里纠正了结果我没看到找了半天原因…… `$cloudEnv_uid`是JQL中的环境变量，也是uid。概念太多了慢慢熟悉吧。
+2. 修改前端查询。这里由于联表了，所以是`user_id._id`,视频里纠正了结果我没看到找了半天原因…… `$cloudEnv_uid`是[JQL中的环境变量](https://uniapp.dcloud.net.cn/uniCloud/jql.html#variable)，也是uid。概念太多了慢慢熟悉吧。*这里有个坑就是使用了`$cloudEnv_uid`环境变量后，查表时会检测登陆信息，未登录账户会被强制跳转登录页，与设计需求不符，暂时没找到解决方法。*
     ```js
     "state == true || user_id._id == $cloudEnv_uid" 
     ```
@@ -155,7 +159,7 @@ HbuilderX中新建项目，选择starter模板，vue3，托管代码到私有仓
 
     ![1657013486108.png](./img/1657013486108.png)
 
-#### 四. 审核逻辑
+### 四. 审核逻辑
 1. 首先到admin页面，添加`manager`角色，名称审核员。添加用户，角色设置为审核员，可登录应用starter。回到前端登录审核员账户。当然现在还是只能看到审核通过的留言。需要配置权限和查询。
 
 2. DBS中修改`"read": "doc.state==true || doc.user_id==auth.uid || 'manager' in auth.role",` 。这里用in是因为role是数组，可多选角色。
@@ -192,6 +196,50 @@ HbuilderX中新建项目，选择starter模板，vue3，托管代码到私有仓
 DBS中修改`"update": "'manager' in auth.role",` 
 
 到此留言版功能已完成。套用现成的模板框架和api，开发效率高了很多。虽然定制化可能复杂程度更高了，但在只要求功能不在乎细节的情况下，这已经是飞一般速度了。
+
+### 五. 使用Schema2code制作管理页
+1. Schema2code
+在项目目录uniCloud/database/guestbook.schema.json上点击右键，schema2code。选择项目admin-dj, 弹出窗口会自动选中text和state两个字段，切换顶上标签到`uniCloud admin页面`，确定。注册路由，导入页面确定。
+2. 编辑admin页
+在admin-dj下面的pages.json找到新添加的pages的path，复制（如pages/guestbook/list）。打开admin页地址，菜单管理，新增一级菜单，标识: guestbook, 名称: 留言板管理, 内置图标点击可以选择uni-icons-chat, 页面URL: pages/guestbook/list  确定后刷新。
+
+![1657092137079.png](./img/1657092137079.png)
+
+后台已经可以管理留言板增查改删。
+
+### 六.给admin页面配置权限
+1. 添加权限   
+在admin页面，权限管理中增加权限`guestbook-read`,名称为留言板读取权限
+2. 添加角色
+角色管理中增加`guestbook-reader`,勾选留言板读取权限
+3. 菜单添加权限
+菜单管理中修改guestbook菜单，勾选留言板读取权限
+4. 添加测试用户
+新建用户greader，勾选角色留言板读取人，可登录应用admin-dj下面的pages
+
+    到此可以使用greader登录页面，看到留言板管理菜单，但是点击后看不到数据，因为这里的权限只关乎菜单可见，还需要编辑表的读取权限。
+5. 修改DBS   
+编辑guestbook.schema.json。read权限添加一个权限，即为`"read": "doc.state==true || doc.user_id==auth.uid || 'manager' in auth.role || 'guestbook-read' in auth.permission"`
+
+    闭环了，现在刷新admin页面，已经可以看到留言管理中的留言列表。
+
+### 七.同理添加文章管理
+
+按照上面五、六步骤，同理可以将文章的管理页添加出来，表名为`opendb-news-articles`，挑选一下待编辑的字段。都做完后可以勉强给前端首页的新闻列表添加内容了。
+
+### 八.组织部门管理
+
+这里存在一个层级原因有所不同。待理顺再继续。
+
+
+### 结束.临时部署发布
+
+1. 开通临时托管页面   
+打开web控制台，左侧点击"前端网页托管"，点击开通。
+2. 上传文件部署   
+选中项目后点击菜单：发行-上传网站到服务器。选中刚才已通过前端网页托管服务的云服务空间，上传。将starter和admin项目分别上传。
+3. 打开   
+打开web控制台-前端网页托管-参数配置标签，里面有默认域名信息如 https://static-08680667-xxxx-xxxx-xxxx-xxxxxx.bspapp.com/ 这样的地址，点击进入前端页面。在地址后增加admin即为管理端地址（https://static-08680667-xxxx-xxxx-xxxx-xxxxxx.bspapp.com/admin/)。路由模式推荐尽量使用hash模式，多个#号，但是可以减少无谓的bug和省去多余配置。
 ## 其他技巧
 1. Admin通过DBS定义数据模型，进行数据管理。    
   database文件夹右键，新建DBS，设定字段和条件。右键schema2code，选择admin项目，预览合并。则pages目录下出现CURD目录vue，pages.json下出现router添加。把list的url复制到admin页面中的新建菜单，粘贴刷新，出现列表管理。本表的数据增查改删已全部可实现。
