@@ -28,6 +28,7 @@ publish: true
 
 本文的运行命令都是使用pnpm
 
+[mongoose迁移到Prisma](https://www.prisma.io/docs/guides/migrate-to-prisma/migrate-from-mongoose#collection-name-inference) 
 
 ## MongoDB转换为副本集
 
@@ -114,6 +115,12 @@ publish: true
 这步安装和初始化了Prisma数据演示结构和Client。可以使用ts执行。
 
 启动脚本为 `pnpm go`
+```js
+"scripts": {
+    "dev": "prisma generate",
+    "go": "ts-node ./src/index.ts"
+  },
+```
 
 查看截止此步的源码：
 `git checkout dbc5ee2e8cabd970e915242049d7ac25e1ce6219`

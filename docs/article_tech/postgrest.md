@@ -45,6 +45,15 @@ sudo systemctl restart docker
 mkdir /dshare
 docker run --name post -p 5433:5432 -v /dshare:/dshare \
     -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+# 更新，如需持久化docker数据，需要将数据目录映射
+docker volume create pgdata
+docker run --name post -p 5433:5432 -v /dshare:/dshare -v /pgdata:/var/lib/postgresql/data \
+    -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+#wsl
+docker run --name post -p 5433:5432 -v /mnt/e/dshare:/dshare -v /pgdata:/var/lib/postgresql/data \
+    -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
 
 然后下载 jwt 插件源码及我提供的初始脚本到共享目录，如还没有安装 Git 用 `yum install git` 安装一下。
